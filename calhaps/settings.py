@@ -38,16 +38,6 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-# django - storages
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAISDEISAIY3LRYY3Q'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'calhaps'
-BUCKET_NAME = 'calhaps'
-AWS_CALLING_FORMAT = 2
-AWS_UPLOAD_DESTINATION = "http://s3.amazonaws.com/"+str(BUCKET_NAME)+"/"
-AWS_PRELOAD_METADATA = True # necessary to fix manage.py collectstatic command to only upload changed files instead of all files
-
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT,"site_media","media")
@@ -175,6 +165,15 @@ LOGGING = {
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
+
+# django - storages
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAISDEISAIY3LRYY3Q'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'calhaps'
+BUCKET_NAME = 'calhaps'
+AWS_CALLING_FORMAT = 2
+AWS_UPLOAD_DESTINATION = "http://s3.amazonaws.com/"+str(BUCKET_NAME)+"/"
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
