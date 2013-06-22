@@ -56,7 +56,6 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT,"site_media","static")
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/site_media/static/'
-
 import posixpath
 ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
 
@@ -66,7 +65,6 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_ROOT,"static"),
-
 )
 
 # List of finder classes that know how to find static files in
@@ -126,6 +124,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'tastypie',
     'storages',
+    'gunicorn',
 
     # local apps
     'events',
