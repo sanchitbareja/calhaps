@@ -5,6 +5,17 @@ from events.views import home
 from django.contrib import admin
 admin.autodiscover()
 
+# API
+from tastypie.api import Api
+from api.api import ClubResource
+from api.api import LocationResource
+from api.api import EventResource
+
+v1_api = Api(api_name='v1')
+v1_api.register(ClubResource())
+v1_api.register(EventResource())
+v1_api.register(LocationResource())
+
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', home),
@@ -15,4 +26,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
+    # v1 API
+    url(r'^api/', include(v1_api.urls)),
 )
