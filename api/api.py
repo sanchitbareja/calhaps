@@ -44,7 +44,9 @@ class LocationResource(ModelResource):
         return 'application/json'
 
 class EventResource(ModelResource):
-    location = fields.ForeignKey(Location, 'location', full=True)
+    location = fields.ForeignKey(LocationResource, 'location', full=True)
+    club = fields.ForeignKey(ClubResource, 'club', ful;=True)
+
     class Meta:
         queryset = Event.objects.all()
         resource_name = 'event'
