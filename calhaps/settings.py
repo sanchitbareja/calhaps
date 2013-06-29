@@ -193,8 +193,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 FACEBOOK_APP_ID = '189117944586416'
 FACEBOOK_API_SECRET = '09f59b5b6e563a7b639715d258e169cf'
 
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
 LOGIN_URL = '/login-form/'
-LOGIN_REDIRECT_URL = '/logged-in/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL = '/login-error/'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
