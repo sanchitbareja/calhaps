@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from events.views import home
+from events.views import home, done
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -20,7 +20,7 @@ v1_api.register(LocationResource())
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', home),
+    url(r'^$', home, name='home'),
     # url(r'^calhaps/', include('calhaps.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
@@ -28,6 +28,7 @@ urlpatterns = patterns('',
 
     # social-auth-urls
     url(r'', include('social_auth.urls')),
+    url(r'^done/$', done, name='done'),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
