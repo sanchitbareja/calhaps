@@ -45,7 +45,7 @@ class LocationResource(ModelResource):
 
 class EventResource(ModelResource):
     location = fields.ForeignKey(LocationResource, 'location', full=True)
-    club = fields.ForeignKey(ClubResource, 'club', ful;=True)
+    club = fields.ForeignKey(ClubResource, 'club', full=True)
 
     class Meta:
         queryset = Event.objects.all()
