@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'tastypie',
     'storages',
+    'social_auth',
     'gunicorn',
 
     # local apps
@@ -173,6 +174,28 @@ AWS_STORAGE_BUCKET_NAME = 'calhaps'
 BUCKET_NAME = 'calhaps'
 AWS_CALLING_FORMAT = 2
 AWS_UPLOAD_DESTINATION = "http://s3.amazonaws.com/"+str(BUCKET_NAME)+"/"
+
+# Authentication Backends
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'social_auth.context_processors.social_auth_by_name_backends',
+    'social_auth.context_processors.social_auth_backends',
+    'social_auth.context_processors.social_auth_by_type_backends',
+    'social_auth.context_processors.social_auth_login_redirect',
+)
+
+FACEBOOK_APP_ID = '189117944586416'
+FACEBOOK_API_SECRET = '09f59b5b6e563a7b639715d258e169cf'
+
+LOGIN_URL = '/login-form/'
+LOGIN_REDIRECT_URL = '/logged-in/'
+LOGIN_ERROR_URL = '/login-error/'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
