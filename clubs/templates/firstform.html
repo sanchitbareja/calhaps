@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Foundation 4</title>
+
+  
+  <link rel="stylesheet" href="css/foundation.css" />
+  
+
+  <script src="js/vendor/custom.modernizr.js"></script>
+
+</head>
+
+<body>
+
+
+<!--jQuery UI -->
+  <link type="text/css" href="{{ MEDIA_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.scrollTo.js"></script>
+
+  <!-- DatePicker stuff -->
+  <script>
+
+    $(function() {
+      $( "#datepicker" ).datepicker({
+        showOn: "focus",
+        showAnim: "slideDown",
+        minDate: new Date(),
+        /*onSelect: function(dateText, inst){
+          console.log(dateText);
+          dateID = inst.selectedDay + "" + inst.selectedMonth + "" + inst.selectedYear;
+          $('#nlists').scrollTo( $("#"+dateID), 800);
+        }*/
+      });
+    });
+   
+  </script>
+
+<form>
+  <!--<fieldset>-->
+    <!--<legend>Fieldset</legend>-->
+    <br />
+
+    <div>
+      <input type="text" class="text-input" size="40"/>
+    <input type="button" value="Upload" id="upload" class="submit"/>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <input type="text" placeholder="Event Name">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <input type="text" placeholder="When">
+      </div>
+      <div class="large-6 columns">
+        <input type="text" placeholder="Where" id="datepicker">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <input type="text" placeholder="Host">
+      </div>
+      <div class="large-6 columns">
+        <input type="text" placeholder="Age/Dress">
+      </div>
+    </div>
+
+      <div class="row">
+      <div class="large-12 columns">
+          <textarea placeholder="Additional Info"></textarea>
+      </div>
+    </div>
+
+    <a href="#" class=" expand medium button " style="background-color:#A80000">ADD EVENT</a>
+
+    <br>
+    <br> 
+
+    <p style= "text-align:center"> Events are not added instantly. We get an email about your event before adding it. This process is purely to make sure that we are not receiving spam. Thanks :) 
+    </p>
+
+    
+  <!--</fieldset>-->
+</form>
+</body>
+
+
+ <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+  
+  <script src="js/foundation.min.js"></script>
+  <!--
+  
+  <script src="js/foundation/foundation.js"></script>
+  
+  <script src="js/foundation/foundation.interchange.js"></script>
+  
+  -->
+
+  <script type="text/javascript">
+  $("#addEventFormSubmit").click(function(){
+    var error = false;
+
+    if($("#eventTitle").val() == "") {
+      $("#eventTitleLabel").css("color","red");
+      error = true;
+    } else {
+      $("#eventTitleLabel").css("color","black");
+    }
+    if($("#eventWhen").val() == "") {
+      $("#eventWhenLabel").css("color","red");
+      error = true;
+    } else {
+      $("#eventWhenLabel").css("color","black");
+    }
+    if($("#eventWhere").val() == "") {
+      $("#eventWhereLabel").css("color","red");
+      error = true;
+    } else {
+      $("#eventWhereLabel").css("color","black");
+    }
+    if($("#eventHost").val() == "") {
+      $("#eventHostLabel").css("color","red");
+      error = true;
+    } else {
+      $("#eventTitleLabel").css("color","black");
+    }
+    if($("#eventDescription").val() == ""){
+      $("#eventDescriptionLabel").css("color","red");
+      error = true;
+    } else {
+      $("#eventDescriptionLabel").css("color","black");
+    }
+
+    if(!error){
+      $("#addEventForm").before('<div id="spinnerWait"><div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div><p>Sending your feedback...</p></div>');
+      $.ajax({
+        type: "POST",
+        url: "/add/event/",
+        data: { eventDescription: $("#eventDescription").val(), eventTitle: $("#eventTitle").val(), eventWhen: $("#eventWhen").val(), eventWhere: $("#eventWhere").val(), eventHost: $("#eventHost").val() , csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+      }).done(function( returnData ) {
+        if(returnData['success']){
+          $("#addEventFormSubmit").remove();
+          $("#addEventForm").remove();
+          $("#spinnerWait").replaceWith("<p>Thanks for adding the event! :)</p>");
+        } else {
+          $("#spinnerWait").remove();
+          $("#addEventForm").replaceWith("<p>Oops! Something broke. Please try again in a while :( </p>");
+        }
+      });
+    }
+  });
+</script>
+  
+  <script>
+    $(document).foundation();
+  </script>
+</body>
