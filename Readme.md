@@ -121,7 +121,6 @@ Example Request Body:
 Example RESPONSE header:
 
 	Status Code: 201
-	Location: http://127.0.0.1:8000/api/v1/threads/18/
 	Date: Fri, 19 Jul 2013 22:52:43 GMT
 	Server: WSGIServer/0.1 Python/2.7.2
 	Vary: Accept
