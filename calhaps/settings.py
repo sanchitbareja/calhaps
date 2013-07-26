@@ -36,7 +36,7 @@ USE_I18N = True
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
@@ -93,7 +93,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.crossdomainxhr.XsSharing',
 )
+
+# settings for cross-domain requests (added this to allow api access)
+# XS_SHARING_ALLOWED_ORIGINS = "http://127.0.0.1:8000/"
+# XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE', 'PATCH']
 
 ROOT_URLCONF = 'calhaps.urls'
 
@@ -165,6 +170,20 @@ LOGGING = {
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
+
+# EMAIL SETTINGS
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'caleventsinfo@gmail.com'
+EMAIL_HOST_PASSWORD = 'saqwwqasbash18243601'
+EMAIL_PORT = 587
+
+# People who will receive a notification about a new event added
+EVENT_MASTERS = ['sanchitbareja@gmail.com','sweetsukriti@gmail.com']
+
+# Tastypie settings
+TASTYPIE_DEFAULT_FORMATS = ['json']
+API_LIMIT_PER_PAGE = 20
 
 # django - storages
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'

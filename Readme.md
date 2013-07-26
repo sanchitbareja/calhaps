@@ -21,7 +21,7 @@ Requires Authentication: No
 URL: `/api/v1/clubs/`
 
 Content-type: `application/json`
-Filtering options: 
+Filtering options:
 
 Example response:
 
@@ -39,13 +39,13 @@ Example response:
     			"description": "This club wishes to foster brotherhood.",				"typeOfOrganization": "Social Fraternity",
     			"founded": "mm/dd/yyyy",
     			"urlPersonal": "http://www.alphabetagamme.com",
-    			"image": "http://calhaps.amazonaws.com/alphabetagamma_logo.jpg"
+    			"imageUrl": "http://calhaps.amazonaws.com/alphabetagamma_logo.jpg"
     		}, {
 				"name": "Theta Beta Gamma",
     			"description": "This is where Nerd rules!",    				"typeOfOrganization": "Academic Fraternity",
     			"founded": "mm/dd/yyyy",
     			"urlPersonal": "http://www.nerdrulez.com"",
-    			"image": "http://calhaps.amazonaws.com/nerds_are_awesome.png"
+    			"imageUrl": "http://calhaps.amazonaws.com/nerds_are_awesome.png"
     		}]
     	}
 	}
@@ -60,7 +60,7 @@ Requires Authentication: No
 URL: `/api/v1/events/`
 
 Content-type: `application/json`
-Filtering options: `date`, `days`
+Filtering options: `date`, `days`, `typeOfEvent
 
 Example response:
 
@@ -82,7 +82,7 @@ Example response:
     					"lat": "152.111",
     					"lng": "142.23"
     			},
-    			"image": "http://calhaps.amazonaws.com/boogienight.jpg",
+    			"imageUrl": "http://calhaps.amazonaws.com/boogienight.jpg",
     			"typeOfEvent": [{
     				"type": "Party"
     			}, {
@@ -98,7 +98,7 @@ Example response:
     					"lat": "152.111",
     					"lng": "142.23"
     			},
-    			"image": "http://calhaps.amazonaws.com/drinksfreeflow.png",
+    			"imageUrl": "http://calhaps.amazonaws.com/drinksfreeflow.png",
     			"typeOfEvent": [{
     				"type": "Sports"
     			}],
@@ -116,6 +116,7 @@ Example Request Body:
 	{
 		"title": "A super cool title!",
 		"description": "And equally cool description!"
+		"addedBy": "sanchitbareja@gmail.com" (optional, if they want to get a notification)
 	}
 
 Example RESPONSE header:

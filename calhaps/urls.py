@@ -10,13 +10,11 @@ admin.autodiscover()
 # API
 from tastypie.api import Api
 from api.api import ClubResource
-from api.api import LocationResource
 from api.api import EventResource
 
 v1_api = Api(api_name='v1')
 v1_api.register(ClubResource())
 v1_api.register(EventResource())
-v1_api.register(LocationResource())
 
 urlpatterns = patterns('',
     # Examples:
