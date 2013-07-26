@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Block Grid - Advertise </title>
+
+  
+  <link rel="stylesheet" href="css/foundation.css" />
+   <link rel="stylesheet" href="css/stylesheet1.css" />
+   <link rel="stylesheet" href="css/stylesheetmaps.css" />
+
+     <link rel="stylesheet" href="foundation_icons_general/stylesheets/general_foundicons.css" />
+
+  <script src="js/vendor/custom.modernizr.js"></script>
+
+  <link type="text/css" href="{{ MEDIA_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.scrollTo.js"></script>
+
+   <script src="mapscheck.js"></script>
+</head>
+
+<body style="background-color:#26466D">
+	<div class="fixed">
+      <nav class="top-bar">
+          <div id="addEventButton">
+            <a href="#">
+              <ul class="title-area">
+  <!--Title Area -->
+                <li class="name"> <i class="foundicon-plus addEvent"> </i> </li>
+
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <!--<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>-->
+              </ul>
+            </a>
+          </div>
+
+          <section class="top-bar-section" id="titleTab">
+    <!-- Left Nav Section -->
+            <ul class="left">
+              <li class= "active"  id="titleName" > <a href="#">  THE DAILY CALENDAR </a> </li>
+            </ul>
+    <!-- Right Nav Section -->
+            <ul class="right">
+              <li class="divider"></li>
+              <li class="has-form">
+                <form>
+                  <div class="row collapse">
+                    <div class="small-8 columns">
+                      <input placeholder="Search" type="text">
+                    </div>
+                    <div class="small-4 columns">
+                      <a href="#"> <i class="foundicon-search" id="searchSymbol"> </i> </a>
+                    </div>
+                  </div>
+                </form>
+              </li>
+              <li class="divider show-for-small"></li>
+             </ul>
+          </section>
+      </nav>
+    </div>
+    
+
+<div id="advertiseGrid" class="row">
+			<div class="advertiseClass columns"> 
+				<p class ="advertiseDay"> MONDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="mondayButton">VIEW EVENT</a>
+			</div>
+			<div class="advertiseClass columns"> 
+				<p class ="advertiseDay"> TUESDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="tuesdayButton">VIEW EVENT</a>
+			</div>
+			<div class="advertiseClass columns"> 
+				<p class ="advertiseDay"> WEDNESDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="wednesdayButton">VIEW EVENT</a>
+			</div>
+			<div class="advertiseClass columns"> 
+				<p class ="advertiseDay"> THURSDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="thursdayButton">VIEW EVENT</a>
+			</div>
+			<div class="advertiseClass columns"> 
+				<p class ="advertiseDay"> FRIDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="fridayButton">VIEW EVENT</a>
+			</div>
+			<div class="advertiseClass columns"> 
+				<p class ="advertiseDay"> SATURDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="saturdayButton">VIEW EVENT</a>
+			</div>
+			<div class="advertiseClass columns"> 
+				<p class ="advertiseDay"> SUNDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="sundayButton">VIEW EVENT</a>
+			</div>
+			
+	</div>
+
+</div>
+	<!-- Using only the small-block-grid -->
+
+	<!--<div class="row">
+			<div class="large-2 columns advertiseClass"> 
+				<p class ="advertiseDay"> MONDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="mondayButton">VIEW EVENT</a>
+			</div>
+			<div class="large-2 columns advertiseClass"> 
+				<p class ="advertiseDay"> TUESDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="tuesdayButton">VIEW EVENT</a>
+			</div>
+			<div class="large-2 columns advertiseClass"> 
+				<p class ="advertiseDay"> WEDNESDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="wednesdayButton">VIEW EVENT</a>
+			</div>
+			<div class="large-2 columns advertiseClass"> 
+				<p class ="advertiseDay"> THURSDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="thursdayButton">VIEW EVENT</a>
+			</div>
+			<div class="large-2 columns advertiseClass"> 
+				<p class ="advertiseDay"> FRIDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="fridayButton">VIEW EVENT</a>
+			</div>
+			<div class="large-2 columns advertiseClass"> 
+				<p class ="advertiseDay"> SATURDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="saturdayButton">VIEW EVENT</a>
+			</div>
+			<div class="large-2 columns advertiseClass"> 
+				<p class ="advertiseDay"> SUNDAY </p>
+				<img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+				<br />
+				<a href="#" class="small button advertiseButton" id="sundayButton">VIEW EVENT</a>
+			</div>
+			
+	</div>-->
+
+
+
+<!--<div class="row">
+	<div class= "large-12 columns">
+		<div class="row">	
+			<div class="large-3 columns" id="optionsMenu" style="border:1px solid black">
+				<div style="size:30px" id="filter-submenu">
+					<div class="row">
+						<div class="large-4 columns filterMenuElement"> ALL </div>
+						<div class="large-4 columns filterMenuElement"> CONFERENCE </div>
+						<div class="large-4 columns filterMenuElement"> PERFOM. </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">	
+				<div class="large-3 columns" id="optionsMenu" style="border:1px solid black">
+					<div style="size:30px" id="filter-submenu">
+						<div class="row">
+							<div class="large-4 columns filterMenuElement"> CELEBRITY </div>
+							<div class="large-4 columns filterMenuElement"> PARTY </div>
+							<div class="large-4 columns filterMenuElement"> PHILAN. </div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>-->
+<div id="map-canvas"></div>
+
+<a href="#" class="button filterButton"> DEFAULT</a>
+<div class="filter-submenu">
+	<div class="button-bar filtersubmenuLine">
+	  <ul class="button-group">
+	    <li><a href="#" class="small button filterButton"> ALL </a></li>
+	    <li><a href="#" class="small button filterButton"> CONFER. </a></li>
+	    <li><a href="#" class="small button filterButton"> PERFORM.</a></li>
+	  </ul>
+	</div>
+	<div class="button-bar filtersubmenuLine">
+	  <ul class="button-group">
+	    <li><a href="#" class="small button filterButton">CELEBRITY</a></li>
+	    <li><a href="#" class="small button filterButton">PARTY</a></li>
+	    <li><a href="#" class="small button filterButton">PHILANTH.</a></li>
+	  </ul>
+	</div>
+</div>
+<!--<div class="small-1 columns"> PARTY</div>
+		<div class="small-1 columns"> PARTY</div>
+		<div class="small-1 columns"> PARTY</div>-->
+<!--
+	<div class="row">
+	</div>
+
+	<div class="row">
+	</div>
+</div>
+
+<div id= "try"> </div>
+
+<div id="trapezoid"> M <br /> <br/> </div>-->
+
+<!--jQuery UI -->
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+  
+  <script src="js/foundation.min.js"></script>
+  <!--
+  
+  <script src="js/foundation/foundation.js"></script>
+  
+  <script src="js/foundation/foundation.alerts.js"></script>
+  
+  <script src="js/foundation/foundation.clearing.js"></script>
+  
+  <script src="js/foundation/foundation.cookie.js"></script>
+  
+  <script src="js/foundation/foundation.dropdown.js"></script>
+  
+  <script src="js/foundation/foundation.forms.js"></script>
+  
+  <script src="js/foundation/foundation.joyride.js"></script>
+  
+  <script src="js/foundation/foundation.magellan.js"></script>
+  
+  <script src="js/foundation/foundation.orbit.js"></script>
+  
+  <script src="js/foundation/foundation.placeholder.js"></script>
+  
+  <script src="js/foundation/foundation.reveal.js"></script>
+  
+  <script src="js/foundation/foundation.section.js"></script>
+  
+  <script src="js/foundation/foundation.tooltips.js"></script>
+  
+  <script src="js/foundation/foundation.topbar.js"></script>
+  
+  <script src="js/foundation/foundation.interchange.js"></script>
+  
+  -->
+  
+  <script>
+    $(document).foundation();
+  </script>
+</body>
+</html>
