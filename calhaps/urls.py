@@ -11,6 +11,7 @@ admin.autodiscover()
 from tastypie.api import Api
 from api.api import ClubResource
 from api.api import EventResource
+from api.views import logout_view, login_error
 
 v1_api = Api(api_name='v1')
 v1_api.register(ClubResource())
@@ -19,7 +20,8 @@ v1_api.register(EventResource())
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', home, name='home'),
-    # url(r'^calhaps/', include('calhaps.foo.urls')),
+    url(r'^logout/$', logout_view, name='logout'),
+    url(r'^login-error/$', login_error, name='login-error'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

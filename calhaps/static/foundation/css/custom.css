@@ -1,0 +1,30 @@
+html, body {
+	height: 100%;
+}
+
+#wrap {
+	min-height: 100%;
+}
+
+#main {
+	overflow:auto;
+	padding-bottom: 50px;
+}  /* must be same height as the footer */
+
+#footer {
+	position: relative;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-top: -50px; /* negative value of footer height */
+	height: 50px;
+	clear:both;
+	background-color: #F2F2F2;
+}
+
+.center-text {
+	text-align: center;
+}
+
+.divider-after {
+	border-right: 1px solid grey;
+}

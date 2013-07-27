@@ -61,7 +61,7 @@ class Location(models.Model):
 
 # Create your models here.
 class Event(models.Model):
-	title = models.CharField(max_length=300)
+	title = models.TextField()
 	description = models.TextField(null = True, blank = True)
 	startTime = models.DateTimeField(auto_now_add=True)
 	club = models.ForeignKey(Club, blank = True, null = True)
@@ -74,6 +74,24 @@ class Event(models.Model):
 
 	def __unicode__(self):
 		return self.title
+
+class FacebookEvent(models.Model):
+	fbId = models.CharField(max_length=200, unique=True)
+	title = models.TextField()
+	description = models.TextField(null = True, blank = True)
+	startTime = models.CharField(max_length=100)
+	image = models.URLField(blank = True, null = True)
+
+	def __unicode__(self):
+		return self.title
+
+class PersonalEvent(models.Model):
+	fbEvent = models.ForeignKey(FacebookEvent)
+	user = models.ForeignKey('users.User')
+	rsvpStatus = models.CharField(max_length=100)
+
+	def __unicode__(self):
+		return self.fbEvent.title+" - "+self.user.username+" : "+self.rsvpStatus
 
 # post save signal - will send email to relevant admins to add the event
 def send_email_about_event(sender, **kwargs):
