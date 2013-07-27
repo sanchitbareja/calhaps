@@ -1,15 +1,16 @@
-
+{% load static from staticfiles %}
+{% load i18n %}
 <div class="row">
-	<div class="large-3 columns hide-for-small center-text divider-after">
-		Copyright Daily Californian
+	<div class="large-4 columns hide-for-small center-text divider-after" id="footer-font">
+		&copy; The Daily Californian 2013. All rights reserved.
 	</div>
-	<div class="large-3 columns center-text divider-after">
+	<div class="large-2 columns center-text divider-after capitalize-text" id="footer-font">
 		Contact Us
 	</div>
-	<div class="large-3 columns center-text divider-after">
-		Drop us some feedback!
+	<div class="large-3 columns center-text divider-after capitalize-text" id="footer-font">
+		Drop some feedback <img src="{% static "images/feedback_box.png" %}" style="height:2em;"/>
 	</div>
-	<div class="large-3 columns hide-for-small center-text">
-		Powered by Calhaps!
+	<div class="large-3 columns hide-for-small center-text capitalize-text" id="footer-font">
+		Powered by <img src="{% static "images/calhaps_logo.png" %}" style="height:2em;"/>
 	</div>
 </div>	

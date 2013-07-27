@@ -8,17 +8,25 @@ html, body {
 
 #main {
 	overflow:auto;
-	padding-bottom: 50px;
+	padding-bottom: 3em;
 }  /* must be same height as the footer */
 
 #footer {
 	position: relative;
 	padding-top: 1em;
 	padding-bottom: 1em;
-	margin-top: -50px; /* negative value of footer height */
-	height: 50px;
+	margin-top: -3em; /* negative value of footer height */
+	height: 3em;
 	clear:both;
 	background-color: #F2F2F2;
+}
+
+#footer-font {
+	line-height: 2em;
+	vertical-align: middle;
+	font-size: 8pt;
+	height:2em;
+	color: #989898;
 }
 
 .center-text {
@@ -26,5 +34,9 @@ html, body {
 }
 
 .divider-after {
-	border-right: 1px solid grey;
+	border-right: 1px solid #989898;
+}
+
+.capitalize-text {
+	text-transform: uppercase;
 }
