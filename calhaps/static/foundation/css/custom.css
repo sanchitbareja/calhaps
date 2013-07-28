@@ -2,6 +2,8 @@ html, body {
 	height: 100%;
 }
 
+
+/* FOOTER STYLING */
 #wrap {
 	min-height: 100%;
 }
@@ -39,4 +41,10 @@ html, body {
 
 .capitalize-text {
 	text-transform: uppercase;
+}
+
+
+/* MAP STYLING */
+#map-canvas {
+	height: 500px;
 }

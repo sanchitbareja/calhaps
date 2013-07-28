@@ -1,0 +1,128 @@
+
+#advertiseGrid{
+	background-color:#d3d3d3;
+	border: 4px solid #d3d3d3;
+	margin-top: 10px;
+	
+}
+
+.advertiseButton {
+	
+	border-radius: 5px; 
+	height: 24px;
+	width: 110px;
+	font-size: 12px;
+	border:none;
+	/*padding-top: 1px;
+	padding-bottom: 5px;
+	/*margin: 0px 0px 0px 0px;
+	/*border-radius: 0.5em; 
+	height: 2em;
+	width: 10.5em;*/
+
+}
+.advertiseClass{
+	border: 3px solid #d3d3d3;
+	background-color: white;
+    position: relative;
+    width: 14.2857%; 
+}
+
+#mondayButton{
+
+background-color:#FF3232;
+}
+
+#tuesdayButton{
+
+background-color: #FF6600;
+}
+
+#wednesdayButton{
+
+background-color: #FFCC00;
+}
+
+#thursdayButton{
+
+background-color: #99FF00;
+}
+
+#fridayButton{
+
+background-color: #00C786;
+}
+
+#saturdayButton{
+
+background-color: #009ACD;
+}
+
+#sundayButton{
+
+background-color: #6600CC;
+}
+
+
+#try{
+	width:30px;
+	height:120px;
+	background-color:#d3d3d3;
+
+}
+
+
+#trapezoid {
+
+	
+	border-right: 20px solid red;
+	border-top: 30px solid transparent;
+	border-bottom: 30px solid transparent;
+	height: 20px;
+	width: 0px;
+	text-align: right;
+	color:white;
+}
+			
+
+.advertiseDay {
+	
+	text-align: center;
+	margin: 0px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+.advertiseImg{
+	margin-bottom: 5px;
+	border:1px solid black;
+}
+
+.filterMenuElement{
+	border:1px solid black
+}
+
+.filterButton{
+	height:25px;
+	width:80px;
+	background-color: gray;
+	border:1px solid white;
+	margin: 0px 0px 0px 0px;
+	font-weight: normal;
+	opacity: 0.8;
+	font-size:11px;
+	text-align: center;
+	color:white;
+
+}
+/*
+.row343 {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 62.5em;
+  *zoom: 1; }
+  */

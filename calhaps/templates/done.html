@@ -1,8 +1,20 @@
 {% extends "base.html" %}
+{% load static from staticfiles %}
+{% load i18n %}
 {% load url from future %}
 
+{% block extra_style %}
+<link rel="stylesheet" href="{% static "stylesheets/stylesheet1.css" %}"/>
+<link rel="stylesheet" href="{% static "stylesheets/stylesheetmaps.css" %}"/>
+<link rel="stylesheet" href="{% static "foundation_icons_general/stylesheets/general_foundicons.css" %}" />
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static "javascripts/mapscheck.js" %}"></script>
+{% endblock %}
+
 {% block content %}
-<h2 id="heading">Logged in!</h2>
+<!-- <h2 id="heading">Logged in!</h2>
 
 <div>
   <h3>User data:</h3>
@@ -17,24 +29,6 @@
 </div>
 
 <div>
-{% if social_auth.associated %}
-  <h3>Disconnect accounts</h3>
-  <ul>
-  {% for type, accounts in social_auth.associated.items %}
-    {% for account in accounts %}
-    <li>
-      <span class="disconnect">
-        <form action="{% url "socialauth_disconnect_individual" account.provider account.id %}" method="post">
-          {% csrf_token %}
-          <a href="#">{{ account.provider|title }} (ID {{ account.id }})</a>
-        </form>
-      </span>
-    </li>
-    {% endfor %}
-  {% endfor %}
-  </ul>
-{% endif %}
-
 
   <h3>Associate new <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-10" title="OAuth2">OAuth2</a> credentials:</h3>
   <ul>
@@ -49,13 +43,77 @@
 <div>
   <a rel="nofollow" class="logout" href="/logout/">Logout</a>
 </div>
+ -->
+<div id="advertiseGrid" class="row">
+  <div class="advertiseClass columns"> 
+    <p class ="advertiseDay"> MONDAY </p>
+    <img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+    <br />
+    <a href="#" class="small button advertiseButton" id="mondayButton">VIEW EVENT</a>
+  </div>
+  <div class="advertiseClass columns"> 
+    <p class ="advertiseDay"> TUESDAY </p>
+    <img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+    <br />
+    <a href="#" class="small button advertiseButton" id="tuesdayButton">VIEW EVENT</a>
+  </div>
+  <div class="advertiseClass columns"> 
+    <p class ="advertiseDay"> WEDNESDAY </p>
+    <img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+    <br />
+    <a href="#" class="small button advertiseButton" id="wednesdayButton">VIEW EVENT</a>
+  </div>
+  <div class="advertiseClass columns"> 
+    <p class ="advertiseDay"> THURSDAY </p>
+    <img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+    <br />
+    <a href="#" class="small button advertiseButton" id="thursdayButton">VIEW EVENT</a>
+  </div>
+  <div class="advertiseClass columns"> 
+    <p class ="advertiseDay"> FRIDAY </p>
+    <img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+    <br />
+    <a href="#" class="small button advertiseButton" id="fridayButton">VIEW EVENT</a>
+  </div>
+  <div class="advertiseClass columns"> 
+    <p class ="advertiseDay"> SATURDAY </p>
+    <img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+    <br />
+    <a href="#" class="small button advertiseButton" id="saturdayButton">VIEW EVENT</a>
+  </div>
+  <div class="advertiseClass columns"> 
+    <p class ="advertiseDay"> SUNDAY </p>
+    <img class ="advertiseImg" src="http://t2.gstatic.com/images?q=tbn:ANd9GcTFkgZo_t8LUq9Tq-Ox9kk3QbjUozGbrek19Nd2s7xjobjFa6LE"/>
+    <br />
+    <a href="#" class="small button advertiseButton" id="sundayButton">VIEW EVENT</a>
+  </div>      
+</div>
 
-<script type="text/javascript">
-  $(function () {
-    $('.disconnect form a').on('click', function (e) {
-      e.preventDefault();
-      $(this).parent('form').submit();
-    });
-  });
-</script>
+</div>
+
+<div class="row">
+  <div class="large-4 columns" style="border:1px solid grey;">
+    <a href="#" class="button filterButton"> DEFAULT</a>
+    <div class="filter-submenu">
+      <div class="button-bar filtersubmenuLine">
+        <ul class="button-group">
+          <li><a href="#" class="small button filterButton"> ALL </a></li>
+          <li><a href="#" class="small button filterButton"> CONFER. </a></li>
+          <li><a href="#" class="small button filterButton"> PERFORM.</a></li>
+        </ul>
+      </div>
+      <div class="button-bar filtersubmenuLine">
+        <ul class="button-group">
+          <li><a href="#" class="small button filterButton">CELEBRITY</a></li>
+          <li><a href="#" class="small button filterButton">PARTY</a></li>
+          <li><a href="#" class="small button filterButton">PHILANTH.</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="large-8 columns" style="border:1px solid grey;">
+    <div id="map-canvas"></div>
+  </div>
+</div>
+
 {% endblock %}
