@@ -154,7 +154,7 @@
         dropdown.attr('style', '').css({
           position : 'absolute',
           top: position.top + this.outerHeight(target),
-          left: left
+          left: -19
         });
       }
 

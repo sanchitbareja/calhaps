@@ -4,8 +4,6 @@
 {% load url from future %}
 
 {% block extra_style %}
-<link rel="stylesheet" href="{% static "stylesheets/stylesheet1.css" %}"/>
-<link rel="stylesheet" href="{% static "stylesheets/stylesheetmaps.css" %}"/>
 <link rel="stylesheet" href="{% static "foundation_icons_general/stylesheets/general_foundicons.css" %}" />
 {% endblock %}
 
@@ -91,27 +89,108 @@
 
 </div>
 
-<div class="row">
-  <div class="large-4 columns" style="border:1px solid grey;">
-    <a href="#" class="button filterButton"> DEFAULT</a>
-    <div class="filter-submenu">
-      <div class="button-bar filtersubmenuLine">
-        <ul class="button-group">
-          <li><a href="#" class="small button filterButton"> ALL </a></li>
-          <li><a href="#" class="small button filterButton"> CONFER. </a></li>
-          <li><a href="#" class="small button filterButton"> PERFORM.</a></li>
-        </ul>
+<div class="row collapse" id="map-content">
+  <div class="large-4 columns">
+    <div id="filterSideControls">
+      <ul class='side-nav'>
+        <li><a href='#'><img src="{% static "images/monday-side-filter.png" %}" /></a></li>
+        <li><a href='#'><img src="{% static "images/tuesday-side-filter.png" %}" /></a></li>
+        <li><a href='#'><img src="{% static "images/wednesday-side-filter.png" %}" /></a></li>
+        <li><a href='#'><img src="{% static "images/thursday-side-filter.png" %}" /></a></li>
+        <li><a href='#'><img src="{% static "images/friday-side-filter.png" %}" /></a></li>
+        <li><a href='#'><img src="{% static "images/saturday-side-filter.png" %}" /></a></li>
+        <li><a href='#'><img src="{% static "images/sunday-side-filter.png" %}" /></a></li>
+      </ul>
+    </div>
+    <div id="filterMain">
+      <div id="filterTopControls">
+        <div class="center-text">
+          <div class="large-1 columns">
+            <span class="whiteText">T</span>
+          </div>
+          <div class="large-2 columns">
+            <a href="" class="dropdown" data-dropdown="filterDropdown" data-options="is_hover:true"><img src="{% static "images/filter-icon.png" %}" style="height:1.5em;" /></a>
+            <div id="filterDropdown" data-dropdown-content>
+              <table id="filterDropdownTable">
+                <tr>
+                  <td id="filterCell"><label for="toggle-all">All</label><input type="checkbox" value="all" id="toggle-all" onclick="toggle_switch('toggle-all',this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-conference">Conference</label><input type="checkbox" value="conference" id="toggle-conference" onclick="toggle_switch('toggle-conference', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-performance">Performance</label><input type="checkbox" value="performance" id="toggle-performance" onclick="toggle_switch('toggle-performance', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                </tr>
+                <tr>
+                  <td><label for="toggle-celebrity">Celebrity</label><input type="checkbox" value="celebrity" id="toggle-celebrity" onclick="toggle_switch('toggle-celebrity', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-party">Party</label><input type="checkbox" value="party" id="toggle-party" onclick="toggle_switch('toggle-party', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-philanthropy">Philanthropy</label><input type="checkbox" value="philanthropy" id="toggle-philanthropy" onclick="toggle_switch('toggle-philanthropy', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                </tr>
+                <tr>
+                  <td><label for="toggle-food">Food</label><input type="checkbox" value="food" id="toggle-food" onclick="toggle_switch('toggle-food', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-green">Green</label><input type="checkbox" value="green" id="toggle-green" onclick="toggle_switch('toggle-green', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-exhibitions">Exhibitions</label><input type="checkbox" value="exhibitions" id="toggle-exhibitions" onclick="toggle_switch('toggle-exhibitions', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                </tr>
+                <tr>
+                  <td><label for="toggle-sports">Sports</label><input type="checkbox" value="sports" id="toggle-sports" onclick="toggle_switch('toggle-sports', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-greek">Greek</label><input type="checkbox" value="greek" id="toggle-greek" onclick="toggle_switch('toggle-greek', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-concert">Concert</label><input type="checkbox" value="concert" id="toggle-concert" onclick="toggle_switch('toggle-concert', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                </tr>
+                <tr>
+                  <td><label for="toggle-movie">Movie</label><input type="checkbox" value="movie" id="toggle-movie" onclick="toggle_switch('toggle-movie', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td><label for="toggle-others">Others</label><input type="checkbox" value="others" id="toggle-others" onclick="toggle_switch('toggle-others', this)"><img src="{% static "images/checkmark.png" %}" id="filterCheckmark"/></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <span class="whiteText">5th Tuesday</span>
+          </div>
+          <div class="large-1 columns">
+            <span class="whiteText">&#x25C0;</span>
+          </div>
+          <div class="large-1 columns">
+            <span class="whiteText">&#x25B6;</span>
+          </div>
+          <div class="large-1 columns">
+            <span class="whiteText">&#x25B6;</span><span class="whiteText" style="margin-left:-0.5em;">&#x25B6;</span>
+          </div>
+        </div>
       </div>
-      <div class="button-bar filtersubmenuLine">
-        <ul class="button-group">
-          <li><a href="#" class="small button filterButton">CELEBRITY</a></li>
-          <li><a href="#" class="small button filterButton">PARTY</a></li>
-          <li><a href="#" class="small button filterButton">PHILANTH.</a></li>
-        </ul>
+      <div id="filterBottomContent">
+        <div id="filterBottomList">
+          <ul id="filteredList">
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Party Name</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Philanthropic event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Good event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Party Name</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Philanthropic event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Good event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Party Name</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Philanthropic event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Good event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Party Name</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Philanthropic event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Good event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Party Name</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Philanthropic event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Good event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Party Name</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Philanthropic event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Good event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Party Name</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Philanthropic event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Good event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Party Name</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Philanthropic event</li>
+            <li><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"> </i> Good event</li>          
+          </ul>
+        </div>
+        <div id="filterBottomControlMenu">
+          <img src="{% static "images/list-icon.png" %}" style="height:2em;float:left;margin-left:10px;margin-bottom:5px;" />
+          <img src="{% static "images/calendar-icon.png" %}" style="height:2em;float:right;margin-right:10px;margin-bottom:5px;" />
+        </div>
       </div>
     </div>
   </div>
-  <div class="large-8 columns" style="border:1px solid grey;">
+  <div class="large-8 columns">
     <div id="map-canvas"></div>
   </div>
 </div>

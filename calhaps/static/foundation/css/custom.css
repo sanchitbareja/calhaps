@@ -2,6 +2,9 @@ html, body {
 	height: 100%;
 }
 
+#map-content {
+	padding-bottom: 3.5em;
+}
 
 /* FOOTER STYLING */
 #wrap {
@@ -10,14 +13,15 @@ html, body {
 
 #main {
 	overflow:auto;
-	padding-bottom: 3em;
+	padding-bottom: 1em;
 }  /* must be same height as the footer */
+
 
 #footer {
 	position: relative;
 	padding-top: 1em;
 	padding-bottom: 1em;
-	margin-top: -3em; /* negative value of footer height */
+	margin-top: -3em;  /* negative value of footer height */
 	height: 3em;
 	clear:both;
 	background-color: #F2F2F2;
@@ -43,8 +47,411 @@ html, body {
 	text-transform: uppercase;
 }
 
+.whiteText {
+	color: white;
+}
 
 /* MAP STYLING */
 #map-canvas {
-	height: 500px;
+	height: 525px;
+}
+
+#titleName{
+	font-size: 22px;
+	font-weight: normal;
+}
+
+.addEvent{
+	color:white;
+	font-size:30px;
+	margin:10px;
+	
+}
+
+.addEvent:after{
+	content:"ADD EVENT";
+	font-size: 12px;
+	position: relative; 
+	top: -10px; 
+	left: 10px; 
+	margin-right:10px;
+	color: white; 
+	font-size: ; 
+	font-style: normal;
+}
+
+#searchSymbol{
+	color:white;
+	font-size: 23px;
+	position:relative;
+	top:4px;
+	left:-4px;
+}
+
+.mapBoxText{ 
+	border: 5px solid #d3d3d3; 
+	margin-top: 8px; 
+	background: white; 
+	padding: 3px;
+	width:300px;
+	height:140px;
+	opacity: 1;
+}
+
+#markerContentHeaderText{
+	text-transform:uppercase;
+	background-color: #FF4500;
+	color:white;
+	font-size:12.5px;
+	height:25px;
+	width:290px;
+	padding-top: 7px;
+	padding-left: 3px;
+	font-weight: bold;
+	margin-bottom: 9px;	
+}
+
+#markerContentHeaderText a {
+	text-decoration: none;
+}
+
+#markerContentImage{
+	height:60px;
+	width:60px;
+	margin-top: 0px;
+	margin-right:3px;
+	margin-left:0px;
+	margin-bottom: 0px;
+	border: 1px solid black;
+	float:left;
+}
+
+#markerContentMainText {
+	margin-bottom: 9px;
+	/*padding-top: 55px;
+	margin-right:0px;
+	margin-left:0px;
+	margin-bottom: 0px;*/
+}
+
+#markerContentWhereWhenText{
+	font-size: 11px;
+	background-color: #00CED6;
+	display:inline;
+
+
+
+}
+
+#markerContentMainTextInfo{
+	font-weight: bold;
+	display:inline;
+	font-size:12px;
+	height:70px;
+	width:100px;
+
+}
+
+#hellip{
+	display:inline;
+	font-weight: bold;
+
+}
+
+.rageContainer{
+	font-size: 11.5px;
+	font-weight: bold;
+	border: 1px none black;
+}
+
+
+#advertiseGrid{
+	background-color:#F2F2F2;
+	border: 4px solid #F2F2F2;
+	margin-top: 1em;
+	
+}
+
+.advertiseButton {
+	
+	border-radius: 5px; 
+	height: 24px;
+	width: 110px;
+	font-size: 12px;
+	border:none;
+	/*padding-top: 1px;
+	padding-bottom: 5px;
+	/*margin: 0px 0px 0px 0px;
+	/*border-radius: 0.5em; 
+	height: 2em;
+	width: 10.5em;*/
+
+}
+.advertiseClass{
+	border: 3px solid #F2F2F2;
+	background-color: white;
+    position: relative;
+    width: 14.2857%; 
+}
+
+#mondayButton{
+
+background-color:#FF3232;
+}
+
+#tuesdayButton{
+
+background-color: #FF6600;
+}
+
+#wednesdayButton{
+
+background-color: #FFCC00;
+}
+
+#thursdayButton{
+
+background-color: #99FF00;
+}
+
+#fridayButton{
+
+background-color: #00C786;
+}
+
+#saturdayButton{
+
+background-color: #009ACD;
+}
+
+#sundayButton{
+
+background-color: #6600CC;
+}
+
+
+#try{
+	width:30px;
+	height:120px;
+	background-color:#d3d3d3;
+
+}
+
+
+#trapezoid {
+
+	
+	border-right: 20px solid red;
+	border-top: 30px solid transparent;
+	border-bottom: 30px solid transparent;
+	height: 20px;
+	width: 0px;
+	text-align: right;
+	color:white;
+}
+			
+
+.advertiseDay {	
+	text-align: center;
+	margin: 0px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+.advertiseImg{
+	margin-bottom: 5px;
+	border:1px solid black;
+}
+
+.filterMenuElement{
+	border:1px solid black
+}
+
+.filterButton{
+	height:25px;
+	width:80px;
+	background-color: gray;
+	border:1px solid white;
+	margin: 0px 0px 0px 0px;
+	font-weight: normal;
+	opacity: 0.8;
+	font-size:11px;
+	text-align: center;
+	color:white;
+
+}
+/*
+.row343 {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 62.5em;
+  *zoom: 1; }
+  */
+
+/* Filter Menu */
+
+#filterSideControls {
+	position: relative;
+	display: inline;
+	clear: none;
+	z-index: 1;
+}
+
+.side-nav {
+	display: block;
+	margin: 0;
+	padding: 55px 0 0 0;
+	margin-left: -20px;
+	list-style-type: none;
+	list-style-position: inside;
+}
+
+.side-nav li {
+	margin: 0 0 0 0;
+	font-size: 0.875em;
+}
+
+.side-nav li > a > img {
+	height: 60px;
+}
+
+#filterMain {
+	margin-top: -475px;
+	position: relative;
+	z-index: 5;
+}
+
+#filterTopControls {
+	height: 55px;
+	background-color: #EE6D2B;
+	z-index: 5;
+	line-height: 55px;
+	vertical-align: middle;
+}
+
+#filterBottomContent {
+	height: 470px;
+	background-color: #F2F2F2;
+	z-index: 5;
+}
+
+#filterBottomList {
+	height: 420px;
+	background-color: white;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	overflow-y: scroll;
+}
+
+#filteredList {
+	margin-left: 10px;
+	margin-right: 10px;
+	list-style: none;
+}
+
+#filteredList li {
+	border-bottom: 1px solid #F2F2F2;
+	height: 3em;
+	line-height: 3em;
+	vertical-align: middle;
+}
+
+/*#filterDropdown:before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	border: inset 10px;
+	border-color: transparent transparent white transparent;
+	border-bottom-style: solid;
+	position: absolute;
+	top: -3px;
+	left: 8px;
+	z-index: 99;
+}
+*/
+#filterDropdown:after {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	border: inset 11px;
+	border-color: transparent transparent rgba(113,113,113,0.7) transparent;
+	border-bottom-style: transparent;
+	position: absolute;
+	top: -22px;
+	left: 35px;
+	z-index: 98;
+}
+
+#filterDropdown {
+	position: absolute;
+	top: -9999px;
+	list-style: none;
+	margin-left: 0;
+	width: 312px;
+	max-height: none;
+	height: auto;
+	background: rgba(113,113,113,0.9);
+	font-size: 16px;
+	z-index: 99;
+	margin-top: 19px;
+	margin-left: 0px;
+}
+
+#filterDropdownTable {
+	margin: 6px;
+	background: transparent;
+	border-spacing: 0;
+}
+
+#filterDropdownTable tr {
+	background: transparent;
+}
+
+#filterDropdownTable tr > td {
+	padding-top: 0.4em;
+	padding-bottom: 0.4em;
+	border: solid 1px white;
+	background: transparent;
+	width:99px;
+	color: white;
+	clear: none;
+}
+
+#filterDropdownTable tr > td > input[type=checkbox] {
+	position: absolute;
+   	top: -9999px;
+   	left: -9999px;
+   	/* For mobile, it's typically better to position checkbox on top of clickable
+      area and turn opacity to 0 instead. */
+}
+
+#filterDropdownTable tr > td > input[type=checkbox]:checked ~ #filterCheckmark {
+	display: inline;
+}
+
+#filterDropdownButton {
+	display: none;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	color: white;
+}
+
+#filterBottomControlMenu {
+	height: 45px;
+}
+
+#filterCheckmark {
+	display: none;
+	height: 3em;
+	margin-top: -3.3em;
+	float: right;
+	margin-right: -15px;
 }
