@@ -1,5 +1,6 @@
 from django.db import models
 from clubs.models import Club
+import datetime
 
 # email imports
 from django.core.mail import EmailMessage, EmailMultiAlternatives
@@ -63,7 +64,7 @@ class Location(models.Model):
 class Event(models.Model):
 	title = models.TextField()
 	description = models.TextField(null = True, blank = True)
-	startTime = models.DateTimeField(auto_now_add=True)
+	startTime = models.DateTimeField(editable=True, null=True, blank=True, default=datetime.datetime.now())
 	club = models.ForeignKey(Club, blank = True, null = True)
 	location = models.ForeignKey(Location, blank = True, null = True)
 	image = models.URLField(blank = True, null = True)

@@ -35,12 +35,14 @@ Example response:
     	},
     	"response": {
     		"clubs": [{
+    			"id": "2",
     			"name": "Alpha Beta Gamma",
     			"description": "This club wishes to foster brotherhood.",				"typeOfOrganization": "Social Fraternity",
     			"founded": "mm/dd/yyyy",
     			"urlPersonal": "http://www.alphabetagamme.com",
     			"imageUrl": "http://calhaps.amazonaws.com/alphabetagamma_logo.jpg"
     		}, {
+    			"id": "2",
 				"name": "Theta Beta Gamma",
     			"description": "This is where Nerd rules!",    				"typeOfOrganization": "Academic Fraternity",
     			"founded": "mm/dd/yyyy",
@@ -60,7 +62,9 @@ Requires Authentication: No
 URL: `/api/v1/events/`
 
 Content-type: `application/json`
-Filtering options: `date`, `days`, `typeOfEvent
+Filtering options: `date`, `event_filters`
+
+	e.g. /api/v1/events/?date=2013-08-01&event_filters=parties,conferences
 
 Example response:
 
@@ -77,8 +81,16 @@ Example response:
     			"title": "Boogie Night!",
     			"description": "Enjoy a night of games!",
     			"startTime": "mm/dd/yyyy - HH:MM"
-    			"club": "2",
+    			"club": {
+    				"id": "2",
+					"name": "Theta Beta Gamma",
+    				"description": "This is where Nerd rules!",    					"typeOfOrganization": "Academic Fraternity",
+    				"founded": "mm/dd/yyyy",
+    				"urlPersonal": "http://www.nerdrulez.com"",
+    				"imageUrl": "http://calhaps.amazonaws.com/nerds_are_awesome.png"
+    			},
     			"location": {
+    					"name": "TDX",
     					"lat": "152.111",
     					"lng": "142.23"
     			},
@@ -93,8 +105,16 @@ Example response:
     			"title": "Drinks Night!",
     			"description": "Enjoy a night of drinks!",
     			"startTime": "mm/dd/yyyy - HH:MM"
-    			"club": "2",
+    			"club": {
+    				"id": "2",
+					"name": "Theta Beta Gamma",
+    				"description": "This is where Nerd rules!",    					"typeOfOrganization": "Academic Fraternity",
+    				"founded": "mm/dd/yyyy",
+    				"urlPersonal": "http://www.nerdrulez.com"",
+    				"imageUrl": "http://calhaps.amazonaws.com/nerds_are_awesome.png"
+    			,
     			"location": {
+		    			"name": "TDX",
     					"lat": "152.111",
     					"lng": "142.23"
     			},

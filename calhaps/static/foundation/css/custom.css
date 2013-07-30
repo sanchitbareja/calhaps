@@ -57,6 +57,7 @@ html, body {
 }
 
 #titleName{
+	margin-left: 230px;
 	font-size: 22px;
 	font-weight: normal;
 }
@@ -430,6 +431,10 @@ background-color: #6600CC;
    	left: -9999px;
    	/* For mobile, it's typically better to position checkbox on top of clickable
       area and turn opacity to 0 instead. */
+}
+
+#filterDropdownTable tr > td > label {
+	color: white;
 }
 
 #filterDropdownTable tr > td > input[type=checkbox]:checked ~ #filterCheckmark {

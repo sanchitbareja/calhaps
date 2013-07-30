@@ -84,9 +84,60 @@ class EventResource(ModelResource):
         allowed_methods = ['get', 'post']
         limit = 0
         excludes = ['readyForDisplay']
-        filtering = {
-            "username": ("exact")
-        }
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(EventResource, self).build_filters(filters)
+
+        if "date" in filters:
+            try:
+                filter_date = filters['date']
+                date_array = filter_date.split('-')
+                filter_start_date = datetime.date(int(date_array[0]),int(date_array[1]),int(date_array[2]))
+                filter_end_date = filter_start_date + datetime.timedelta(days=1)
+
+                # make sure the date is correct
+                sqs = Event.objects.filter(startTime__gte=filter_start_date).filter(startTime__lte=filter_start_date+datetime.timedelta(days=1))
+            except:
+                sqs = []
+            if "pk__in" not in orm_filters.keys():
+                orm_filters["pk__in"] = []
+            orm_filters["pk__in"] = orm_filters["pk__in"] + [i.pk for i in sqs]
+
+        if "event_filters" in filters:
+            try:
+                event_filters = filters['event_filters']
+                # remove white spaces and capitalize first letter
+                event_filters_array = [event_filter.strip().title() for event_filter in event_filters.split(',')]
+
+                sqs = Event.objects.filter(typeOfEvent__type__in=event_filters_array)
+            except:
+                sqs = []
+            if "pk__in" not in orm_filters.keys():
+                orm_filters["pk__in"] = []
+            orm_filters["pk__in"] = orm_filters["pk__in"] + [i.pk for i in sqs]
+
+        if "date" in filters and "event_filters" in filters:
+            try:
+                filter_date = filters['date']
+                date_array = filter_date.split('-')
+                filter_start_date = datetime.date(int(date_array[0]),int(date_array[1]),int(date_array[2]))
+                filter_end_date = filter_start_date + datetime.timedelta(days=1)
+
+                event_filters = filters['event_filters']
+                # remove white spaces and capitalize first letter
+                event_filters_array = [event_filter.strip().title() for event_filter in event_filters.split(',')]
+
+                sqs = Event.objects.filter(startTime__gte=filter_start_date).filter(startTime__lte=filter_start_date+datetime.timedelta(days=1)).filter(typeOfEvent__type__in=event_filters_array)
+            except:
+                sqs = []
+            if "pk__in" not in orm_filters.keys():
+                orm_filters["pk__in"] = []
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
 
     def dehydrate(self, bundle):
         # no renaming required for 'title'
@@ -98,11 +149,18 @@ class EventResource(ModelResource):
         # no renaming required for 'startTime'
         bundle.data['startTime'] = bundle.obj.startTime
 
-        # only return the club's 'id'
-        bundle.data['club'] = bundle.obj.club.id
+        # club related date
+        bundle.data['club'] = {}
+        bundle.data['club']['id'] = bundle.obj.club.id
+        bundle.data['club']['name'] = bundle.obj.club.name
+        bundle.data['club']['description'] = bundle.obj.club.description
+        bundle.data['club']['typeOfOrganization'] = bundle.obj.club.typeOfOrganization
+        bundle.data['club']['urlPersonal'] = bundle.obj.club.urlPersonal
+        bundle.data['club']['imageUrl'] = bundle.obj.club.image
+        bundle.data['club']['founded'] = bundle.obj.club.founded
 
         # only return the lat and lng of the event location without requiring a location resource
-        bundle.data['location'] = {'lat':bundle.obj.location.lat,'lng':bundle.obj.location.lng}
+        bundle.data['location'] = {'lat':bundle.obj.location.lat,'lng':bundle.obj.location.lng, 'name':bundle.obj.location.name}
 
         # rename 'image' to 'imageUrl'
         bundle.data['imageUrl'] = bundle.obj.image
