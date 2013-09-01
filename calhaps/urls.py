@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from events.views import home
+from events.views import home, home_two
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -20,6 +20,7 @@ v1_api.register(EventResource())
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', home, name='home'),
+    url(r'^tdcv2/$', home_two, name='tdcv2'),
     url(r'^logout/$', logout_view, name='logout'),
     url(r'^login-error/$', login_error, name='login-error'),
 

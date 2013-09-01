@@ -1,46 +1,33 @@
+{% load static from staticfiles %}
+{% load i18n %}
+{% load url from future %}
 
 <div class="fixed contain-to-grid">
   <nav class="top-bar">
-    <div id="addEventButton">
-      <a href="#">
-        <ul class="title-area">
-          <!--Title Area -->
-          <li class="name"> <i class="foundicon-plus addEvent"> </i> </li>
-          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-          <!--<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>-->
-        </ul>
-      </a>
-    </div>
-
     <section class="top-bar-section" id="titleTab">
       <!-- Left Nav Section -->
       <ul class="left">
-        <li class= "active"  id="titleName" > <a href="#">  THE DAILY CALENDAR </a> </li>
+        <li class= "active" id="titleName"><a href="#">THE DAILY CALENDAR</a></li>
       </ul>
       <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="divider"></li>
-        <li class="has-form">
-          <form>
-            <div class="row collapse">
-              <div class="small-8 columns">
-                <input placeholder="Search" type="text">
-              </div>
-              <div class="small-4 columns">
-                <a href="#"> <i class="foundicon-search" id="searchSymbol"> </i> </a>
-              </div>
-            </div>
-          </form>
-        </li>
-        <li class="divider"></li>
+      <ul class="right" style="padding-right:10%">
+        <li><a href="#" data-reveal-id="addEventModal" style="background:red;"><img src="{% static "images/add-event.png" %}" style="height:20px;margin-right:0.5em;">ADD EVENT</a></li>
         {% if user.is_authenticated %}
-        <li class="active"><a href="/logout/">Logout</a></li>
+        <li class="active"><a href="/logout/" style="background:black;color:white;">Logout</a></li>
         {% else %}
-        <li class="active"><a href="/login/facebook/">FB Login</a></li>
+        <li class="active"><a href="/login/facebook/" style="background:black;color:white;"><img src="{% static "images/login-tab.png" %}" style="height:20px;margin-right:0.5em;">LOGIN</a></li>
         {% endif %}
+        <li class="active"><a href=""><img src="{% static "images/search-symbol.png" %}" style="height:25px;"></a></li>
        </ul>
     </section>
   </nav>
+</div>
+
+<div id="addEventModal" class="reveal-modal">
+  <h2>Awesome. I have it.</h2>
+  <p class="lead">Your couch.  It is mine.</p>
+  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+  <a class="close-reveal-modal">&#215;</a>
 </div>
 
 <!-- <h2 id="heading">Logged in!</h2>
