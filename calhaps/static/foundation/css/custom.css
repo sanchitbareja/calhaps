@@ -502,13 +502,13 @@ background-color: #6600CC;
 
 #pin-columns {
 	-webkit-column-count: 3;
-	-webkit-column-gap: 10px;
+	-webkit-column-gap: 1px;
 	-webkit-column-fill: auto;
 	-moz-column-count: 3;
-	-moz-column-gap: 10px;
+	-moz-column-gap: 1px;
 	-moz-column-fill: auto;
 	column-count: 3;
-	column-gap: 10px;
+	column-gap: 1px;
 	column-fill: auto;
 }
 
