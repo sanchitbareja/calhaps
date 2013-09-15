@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 import os, time, simplejson
 from datetime import datetime, timedelta, time
 from calhaps.settings import EVENT_MASTERS
+from events.models import Event
 
 from social_auth import __version__ as version
 from social_auth.utils import setting
@@ -45,20 +46,6 @@ def home_map(request):
         }
         return render_to_response('index.html', ctx, RequestContext(request))
 
-def home_two(request):
-    """Home view, displays login mechanism"""
-    if request.user.is_authenticated():
-        ctx = {
-            'version': version,
-            'last_login': request.session.get('social_auth_last_login_backend')
-        }
-        return render_to_response('tdcv2.html', ctx, RequestContext(request))
-    else:
-
-        return render_to_response('tdcv2.html', {'version': version},
-                                  RequestContext(request))
-
-
 def feedback_form(request):
     """post feedback form and send email"""
     results = {'success':False}
@@ -79,3 +66,11 @@ def add_event(request):
         results['success'] = True
     json_results = simplejson.dumps(results)
     return HttpResponse(json_results, mimetype='application/json')
+
+def event_info(request, eventID):
+    try:
+        event = Event.objects.get(id=eventID)
+        similarEvents = Event.objects.exclude(id=event.id).filter(club=event.club, startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).order_by('startTime')
+        return render_to_response('eventInfo.html',{'event':event,'similarEvents':similarEvents},context_instance=RequestContext(request))
+    except:
+        raise Http404

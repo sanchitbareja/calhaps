@@ -182,7 +182,7 @@ function update_grid(events) {
 	//this method removes all the current events in the grid and updates it with the new set of elements
 
 	//empty the current list and delete all existing markers
-	// $(pins_id).empty();
+	$(pins_id).empty();
 
 	// add stuff to list and add markers to map
 	for (var i in events) {
@@ -261,13 +261,13 @@ function create_list_element(event_object) {
 }
 
 function create_grid_element(event_object) {
-	var grid_item = $.parseHTML('<div class="pin">'+
-          '<img src="http://cssdeck.com/uploads/media/items/2/2v3VhAp.png" />'+
+	var grid_item = $.parseHTML('<a href="/event/'+event_object['id']+'/"><div class="pin">'+
+          '<img style="min-height:8em;width:inherit;" src="'+event_object['imageUrl']+'" />'+
           '<div class="pin-text">'+
-            '<h5 class="grid_title">Google free food day!</h5>'+
-            '<p class="grid_text">@Google, 9/14, 11.47am</p>'+
+            '<h5 class="grid_title">'+event_object['title']+'</h5>'+
+            '<p class="grid_text">@'+event_object['location']['name']+', '+event_object['startTime']+'</p>'+
           '</div>'+
-        '</div>');
+        '</div></a>');
 	$(pins_id).append(grid_item);
 	return grid_item[0];
 }

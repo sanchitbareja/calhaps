@@ -3,6 +3,11 @@
 {% load i18n %}
 {% load url from future %}
 
+{% block extra_script %}
+<!-- Custom functions for the app -->
+<script src="{% static "javascripts/app.js" %}"></script>
+{% endblock %}
+
 {% block extra_style %}
 <link rel="stylesheet" href="{% static "foundation_icons_general/stylesheets/general_foundicons.css" %}" />
 {% endblock %}
