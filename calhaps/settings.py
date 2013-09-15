@@ -185,7 +185,7 @@ EMAIL_HOST_PASSWORD = 'saqwwqasbash18243601'
 EMAIL_PORT = 587
 
 # People who will receive a notification about a new event added
-EVENT_MASTERS = ['sanchitbareja@gmail.com','sweetsukriti@gmail.com']
+EVENT_MASTERS = ['sanchitbareja@gmail.com','hahardikagrawal@gmail.com','caleventsinfo@gmail.com']
 
 # Tastypie settings
 TASTYPIE_DEFAULT_FORMATS = ['json']

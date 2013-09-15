@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load url from future %}
 
+{% csrf_token %}
 <div class="fixed contain-to-grid">
   <nav class="top-bar">
     <section class="top-bar-section" id="titleTab">
@@ -22,6 +23,8 @@
     </section>
   </nav>
 </div>
+
+
 
 <!-- Add Event Form -->
 {% include "addEventForm.html" %}

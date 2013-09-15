@@ -11,7 +11,6 @@
 		     		<input type="text" placeholder="E.g. Boogy Night or Dance Tryouts" id="eventTitle"/>
 		     	</div>
 		    </div>
-		    <br />
 		    <div class="row">
 		     	<div class="large-3 columns">
 		     		<label class="right inline" id="eventWhereLabel">Where:</label>
@@ -20,16 +19,22 @@
 		     		<input type="text" placeholder="The Castle" id="eventWhere"/>	
 		     	</div>
 		    </div>
-		    <br />
 		    <div class="row">
 		     	<div class="large-3 columns">
 		     		<label class="right inline" id="eventWhenLabel">When:</label>
 		     	</div>
 		     	<div class="large-9 columns">
-		     		<input type="text" placeholder="10pm, Tomorrow" id="eventWhen"/>
+		     		<input type="text" placeholder="Tomorrow" id="eventWhen"/>
 	     		</div>
 	     	</div>
-	     	<br />
+	     	<div class="row">
+		     	<div class="large-3 columns">
+		     		<label class="right inline" id="eventTimeLabel">Time:</label>
+		     	</div>
+		     	<div class="large-9 columns">
+		     		<input type="text" placeholder="starts @ 10pm" id="eventTime"/>
+	     		</div>
+	     	</div>
 	     	<div class="row">
 		     	<div class="large-3 columns">
 		     		<label class="right inline" id="eventHostLabel">Host:</label>
@@ -38,15 +43,17 @@
 		     		<input type="text" placeholder="Cal Groups" id="eventHost"/>
 		     	</div>
 		    </div>
-		    <br />
 	     	<div class="row">
-		     	<label id="eventDescriptionLabel">Description for the event</label>
-	     		<textarea rows="5" cols="18" id="eventDescription">Give us as much description about the event as possible. If possible, information about the host will also be much appreciated. :) Thanks!
-				</textarea>
+	     		<div class="large-3 columns">
+	     			<label id="eventDescriptionLabel" class="right inline">Description:</label>
+	     		</div>
+	     		<div class="large-9 columns">
+		     		<textarea style="min-height:100px;" id="eventDescription">Give us as much description about the event as possible. If possible, information about the host will also be much appreciated. :) Thanks!
+					</textarea>
+	     		</div>
 			</div>
-			<br />
-			<a href="#" class="round button" id="addEventFormSubmit">Add Event</a>
-			<p><br />Events are not added instantly. We get an email about your event before adding it. This process is purely to make sure that we are not receiving spam. Thanks!</p>
+			<a href="#" class="button" id="addEventFormSubmit">Add Event</a>
+			<p style="font-size:8pt;">Events are not added instantly. We get an email about your event before adding it. This process is purely to make sure that we are not receiving spam. Thanks!</p>
     	</div>
      	<a class="close-reveal-modal">&#215;</a>
     </div>
@@ -67,6 +74,12 @@
 			error = true;
 		} else {
 			$("#eventWhenLabel").css("color","black");
+		}
+		if($("#eventTime").val() == "") {
+			$("#eventTimeLabel").css("color","red");
+			error = true;
+		} else {
+			$("#eventTimeLabel").css("color","black");
 		}
 		if($("#eventWhere").val() == "") {
 			$("#eventWhereLabel").css("color","red");
@@ -92,7 +105,7 @@
 			$.ajax({
 				type: "POST",
 				url: "/add/event/",
-				data: { eventDescription: $("#eventDescription").val(), eventTitle: $("#eventTitle").val(), eventWhen: $("#eventWhen").val(), eventWhere: $("#eventWhere").val(), eventHost: $("#eventHost").val() , csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+				data: { eventDescription: $("#eventDescription").val(), eventTitle: $("#eventTitle").val(), eventWhen: $("#eventWhen").val(), eventTime: $("#eventTime").val(), eventWhere: $("#eventWhere").val(), eventHost: $("#eventHost").val() , csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
 			}).done(function( returnData ) {
 				if(returnData['success']){
 					$("#addEventFormSubmit").remove();
