@@ -12,17 +12,37 @@ from datetime import datetime, timedelta, time
 from social_auth import __version__ as version
 from social_auth.utils import setting
 
-def home(request):
+def home_grid(request):
     """Home view, displays login mechanism"""
     if request.user.is_authenticated():
         ctx = {
             'version': version,
-            'last_login': request.session.get('social_auth_last_login_backend')
+            'last_login': request.session.get('social_auth_last_login_backend'),
+            'view': 'grid'
         }
         return render_to_response('index.html', ctx, RequestContext(request))
     else:
-        return render_to_response('index.html', {'version': version},
-                                  RequestContext(request))
+        ctx = {
+            'version': version,
+            'view': 'grid'
+        }
+        return render_to_response('index.html', ctx, RequestContext(request))
+
+def home_map(request):
+    """Home view, displays login mechanism"""
+    if request.user.is_authenticated():
+        ctx = {
+            'version': version,
+            'last_login': request.session.get('social_auth_last_login_backend'),
+            'view': 'map'
+        }
+        return render_to_response('index.html', ctx, RequestContext(request))
+    else:
+        ctx = {
+            'version': version,
+            'view': 'map'
+        }
+        return render_to_response('index.html', ctx, RequestContext(request))
 
 def home_two(request):
     """Home view, displays login mechanism"""
@@ -33,5 +53,6 @@ def home_two(request):
         }
         return render_to_response('tdcv2.html', ctx, RequestContext(request))
     else:
+
         return render_to_response('tdcv2.html', {'version': version},
                                   RequestContext(request))

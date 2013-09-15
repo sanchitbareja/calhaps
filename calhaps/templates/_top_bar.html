@@ -10,14 +10,14 @@
         <li class= "active" id="titleName"><a href="#">THE DAILY CALENDAR</a></li>
       </ul>
       <!-- Right Nav Section -->
-      <ul class="right" style="padding-right:10%">
+      <ul class="right" style="padding-right:8.5%">
         <li><a href="#" data-reveal-id="addEventModal" style="background:red;"><img src="{% static "images/add-event.png" %}" style="height:20px;margin-right:0.5em;">ADD EVENT</a></li>
         {% if user.is_authenticated %}
         <li class="active"><a href="/logout/" style="background:black;color:white;">Logout</a></li>
         {% else %}
         <li class="active"><a href="/login/facebook/" style="background:black;color:white;"><img src="{% static "images/login-tab.png" %}" style="height:20px;margin-right:0.5em;">LOGIN</a></li>
         {% endif %}
-        <li class="active"><a href=""><img src="{% static "images/search-symbol.png" %}" style="height:25px;"></a></li>
+        <!-- <li class="active"><a href=""><img src="{% static "images/search-symbol.png" %}" style="height:25px;"></a></li> -->
        </ul>
     </section>
   </nav>

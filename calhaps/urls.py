@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from events.views import home, home_two
+from events.views import home_grid, home_map, home_two
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -19,7 +19,8 @@ v1_api.register(EventResource())
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', home, name='home'),
+    url(r'^$', home_grid, name='home-grid'),
+    url(r'^map/$', home_map, name='home-map'),
     url(r'^tdcv2/$', home_two, name='tdcv2'),
     url(r'^logout/$', logout_view, name='logout'),
     url(r'^login-error/$', login_error, name='login-error'),
@@ -29,7 +30,7 @@ urlpatterns = patterns('',
 
     # social-auth-urls
     url(r'', include('social_auth.urls')),
-    url(r'^done/$', home, name='home'),
+    url(r'^done/$', home_grid, name='home_grid'),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),

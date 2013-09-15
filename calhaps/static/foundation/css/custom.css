@@ -2,6 +2,7 @@ html, body {
 	height: 100%;
 }
 
+
 #map-content {
 	padding-top: 0.5em;
 	padding-bottom: 3.5em;
@@ -76,7 +77,7 @@ html, body {
 
 
 #footer {
-	position: relative;
+	/*position: relative;*/
 	padding-top: 1em;
 	padding-bottom: 1em;
 	margin-top: -3em;  /* negative value of footer height */
@@ -111,7 +112,7 @@ html, body {
 
 /* MAP STYLING */
 #map-canvas {
-	height: 655px;
+	height: 800px;
 }
 
 .mapBoxText{ 
@@ -256,26 +257,6 @@ background-color: #6600CC;
 }
 
 
-#try{
-	width:30px;
-	height:120px;
-	background-color:#d3d3d3;
-
-}
-
-
-#trapezoid {
-
-	
-	border-right: 20px solid red;
-	border-top: 30px solid transparent;
-	border-bottom: 30px solid transparent;
-	height: 20px;
-	width: 0px;
-	text-align: right;
-	color:white;
-}
-			
 
 .advertiseDay {	
 	text-align: center;
@@ -307,16 +288,6 @@ background-color: #6600CC;
 	color:white;
 
 }
-/*
-.row343 {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  max-width: 62.5em;
-  *zoom: 1; }
-  */
 
 /* Filter Menu */
 
@@ -326,6 +297,32 @@ background-color: #6600CC;
 	clear: none;
 	z-index: 1;
 }
+
+.selected-tab {
+	background-color: #F2F2F2;
+	opacity: 1.0;
+	border-radius: 15px 0px 0px 15px;
+	padding-top: 10px;
+	margin-left: 15px !important;
+	margin-right: 0px !important;
+}
+
+.not-selected-tab {
+	opacity: 0.5;
+	border-radius: 15px;
+	padding-top: 10px;
+	margin-left: 15px !important;
+	margin-right: 15px !important;
+}
+
+.not-selected-tab:hover {
+	opacity: 0.9;
+	border-radius: 15px;
+	padding-top: 10px;
+	margin-left: 15px !important;
+	margin-right: 15px !important;
+}
+
 
 .side-nav {
 	display: block;
@@ -379,13 +376,13 @@ background-color: #6600CC;
 }
 
 #filterBottomContent {
-	height: 600px;
+	height: 745px;
 	background-color: #F2F2F2;
 	z-index: 5;
 }
 
 #filterBottomList {
-	height: 550px;
+	height: 735px;
 	background-color: white;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -429,7 +426,7 @@ background-color: #6600CC;
 	border-color: transparent transparent rgba(113,113,113,0.7) transparent;
 	border-bottom-style: transparent;
 	position: absolute;
-	top: -22px;
+	top: -20px;
 	left: 35px;
 	z-index: 98;
 }
@@ -438,21 +435,25 @@ background-color: #6600CC;
 	position: absolute;
 	top: -9999px;
 	list-style: none;
-	margin-left: 0;
+	height:1.5em;
 	width: 312px;
 	max-height: none;
 	height: auto;
 	background: rgba(113,113,113,0.9);
 	font-size: 16px;
 	z-index: 99;
-	margin-top: 19px;
-	margin-left: 0px;
+	margin-top: 20px;
+	margin-left: -3px;
 }
 
 #filterDropdownTable {
-	margin: 6px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
 	background: transparent;
 	border-spacing: 0;
+	border:none;
 }
 
 #filterDropdownTable tr {
@@ -478,19 +479,11 @@ background-color: #6600CC;
 }
 
 #filterDropdownTable tr > td > label {
-	color: white;
+	color: #aaa;
 }
 
 #filterDropdownTable tr > td > input[type=checkbox]:checked ~ #filterCheckmark {
-	display: inline;
-}
-
-#filterDropdownButton {
-	display: none;
-	width: 100%;
-	height: 100%;
-	cursor: pointer;
-	color: white;
+	display: block;
 }
 
 #filterBottomControlMenu {
@@ -503,4 +496,87 @@ background-color: #6600CC;
 	margin-top: -3.3em;
 	float: right;
 	margin-right: -15px;
+}
+
+/* Pinterest style pinning */
+
+#pin-columns {
+	-webkit-column-count: 3;
+	-webkit-column-gap: 10px;
+	-webkit-column-fill: auto;
+	-moz-column-count: 3;
+	-moz-column-gap: 10px;
+	-moz-column-fill: auto;
+	column-count: 3;
+	column-gap: 10px;
+	column-fill: auto;
+}
+
+.pin {
+	position: relative;
+	display: inline-block;
+	background: #FEFEFE;
+	border: 0px solid black;
+	box-shadow: 0px 0px 0px white;
+	margin: 0px;
+	-webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+	padding: 0px;
+	background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+	opacity: 1;
+}
+
+.pin img {
+	display: block;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 0em;
+	margin-bottom: 0em;
+	z-index: 99;
+}
+
+.pin-text {
+	position: absolute;
+	background-color: rgba(40,40,40, 0.7);
+	width: inherit;
+	margin-top: -3.7em;
+	z-index: 100;
+	color:white;
+	padding: 0.2em;
+	width: 100%;
+	font-weight: normal;
+}
+
+.grid_title {
+	margin-bottom: 0px;
+	font-weight: normal;
+	color:rgb(240,240,240);
+	text-align: center;
+}
+
+.grid_text {
+	font-weight: normal;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+@media (min-width: 960px) {
+	#pin-columns {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
+}
+
+@media (min-width: 1100px) {
+	#pin-columns {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
+}
+
+#pin-columns:hover .pin:not(:hover) {
+	opacity: 0.4;
 }

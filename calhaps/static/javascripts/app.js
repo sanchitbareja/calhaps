@@ -5,6 +5,8 @@
 var display_date = new Date(); // will need to increment/decrement dates depending on what they request. start with current_date
 var all_filters = ['Parties','Concerts','Greeklife','Sports','Philanthropy','Performances','Conferences','Movies','Food','Green','Celebrity','Exhibitions','Others']
 var list_id = '#filteredList'
+var pins_id = '#pin-columns';
+var number_of_events_id = '#number_events';
 var map;
 var mapCenter;
 var mapOptions;
@@ -61,6 +63,8 @@ function formatAMPM(date) {
 
 function get_events_and_update_ui(filters_text, date) {
 	// returns events from query
+	console.log(filters_text);
+	console.log(date);
 	$.ajax({
 		type: "GET",
 		url: '/api/v1/events/',
@@ -71,7 +75,9 @@ function get_events_and_update_ui(filters_text, date) {
 		success: function(data, status, xhr) {
 			console.log(data);
 			console.log(status);
+			update_number_of_events(data['response']['events']);
 			update_list_and_map(data['response']['events']);
+			update_grid(data['response']['events']);
 			console.log(display_date);
 			update_date_display();
 		}
@@ -89,21 +95,26 @@ function update_date_display() {
 	weekday[6]="Saturday";
 
 	var current_day = weekday[display_date.getDay()];
-
 	var current_date = display_date.getDate();
 	if(current_date == 1){
-		current_date = ""+current_date+"st";
+		current_date = ""+current_date+"st "+current_day;
 	}
 	else if(current_date == 2){
-		current_date = ""+current_date+"nd";
+		current_date = ""+current_date+"nd "+current_day;
 	}
 	else if(current_date == 3){
-		current_date = ""+current_date+"rd";
+		current_date = ""+current_date+"rd "+current_day;
 	}
 	else {
-		current_date = ""+current_date+"th";
+		current_date = ""+current_date+"th "+current_day;
 	}
-	$("#filteredDateDisplay").text(current_date+" "+current_day);
+
+	if(display_date.getFullYear() == (new Date()).getFullYear() && display_date.getMonth() == (new Date()).getMonth() && display_date.getDate() == (new Date()).getDate()){
+		current_date = "Today";
+	} 
+
+	$("#filteredDateDisplay").text(current_date);
+	$("#noOfEventsDateDisplay").text(current_date.toLowerCase());
 }
 
 //////////////////////////////////////////
@@ -136,12 +147,17 @@ function toggle_switch(label_for, element) {
 		$("label[for="+label_for+"]").css('color','black');
 	} else {
 		$("label[for="+label_for+"]").parent().css('background','transparent');
-		$("label[for="+label_for+"]").css('color','white');
+		$("label[for="+label_for+"]").css('color','#aaa');
 	}
 
 	// refresh list based on filter
 	event_filters = get_filters();
 	response_events = get_events_and_update_ui(textify_filters(event_filters), textify_date());
+}
+
+function update_number_of_events(events){
+	// updates the number of events counter
+	$(number_of_events_id).text(events.length);
 }
 
 function update_list_and_map(events) {
@@ -159,6 +175,21 @@ function update_list_and_map(events) {
 		attach_events_to_markers(new_marker, new_list_item, events[i]);
 
 		console.log('updating map');
+	};
+}
+
+function update_grid(events) {
+	//this method removes all the current events in the grid and updates it with the new set of elements
+
+	//empty the current list and delete all existing markers
+	// $(pins_id).empty();
+
+	// add stuff to list and add markers to map
+	for (var i in events) {
+		
+		new_grid_item = create_grid_element(events[i]);
+
+		console.log('updating grid');
 	};
 }
 
@@ -229,6 +260,18 @@ function create_list_element(event_object) {
 	return list_item[0];
 }
 
+function create_grid_element(event_object) {
+	var grid_item = $.parseHTML('<div class="pin">'+
+          '<img src="http://cssdeck.com/uploads/media/items/2/2v3VhAp.png" />'+
+          '<div class="pin-text">'+
+            '<h5 class="grid_title">Google free food day!</h5>'+
+            '<p class="grid_text">@Google, 9/14, 11.47am</p>'+
+          '</div>'+
+        '</div>');
+	$(pins_id).append(grid_item);
+	return grid_item[0];
+}
+
 
 function create_marker(event_object) {
 	var newMarkerPos = new google.maps.LatLng(event_object['location']['lat'],event_object['location']['lng']);
@@ -262,6 +305,8 @@ function initialize(){
      scriptInfoBox.src = "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js";
      document.body.appendChild(scriptInfoBox); /* Need to make it cross-browser safe */
      scriptInfoBox.onload=initializeMap;
+     // add all events from today
+	response_events = get_events_and_update_ui(textify_filters(all_filters), textify_date());
  }
 
 
