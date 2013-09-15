@@ -112,7 +112,7 @@ html, body {
 
 /* MAP STYLING */
 #map-canvas {
-	height: 800px;
+	height: 675px;
 }
 
 .mapBoxText{ 
@@ -376,13 +376,13 @@ background-color: #6600CC;
 }
 
 #filterBottomContent {
-	height: 745px;
+	height: 620px;
 	background-color: #F2F2F2;
 	z-index: 5;
 }
 
 #filterBottomList {
-	height: 735px;
+	height: 610px;
 	background-color: white;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -533,15 +533,13 @@ background-color: #6600CC;
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 0em;
 	margin-bottom: 0em;
-	z-index: 99;
 }
 
 .pin-text {
 	position: absolute;
 	background-color: rgba(40,40,40, 0.7);
 	width: inherit;
-	margin-top: -3.7em;
-	z-index: 100;
+	margin-top: -3.8em;
 	color:white;
 	padding: 0.2em;
 	width: 100%;
