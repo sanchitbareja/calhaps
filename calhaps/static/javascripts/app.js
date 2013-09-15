@@ -272,7 +272,6 @@ function create_grid_element(event_object) {
 	return grid_item[0];
 }
 
-
 function create_marker(event_object) {
 	var newMarkerPos = new google.maps.LatLng(event_object['location']['lat'],event_object['location']['lng']);
 	var marker = new google.maps.Marker({
@@ -308,7 +307,6 @@ function initialize(){
      // add all events from today
 	response_events = get_events_and_update_ui(textify_filters(all_filters), textify_date());
  }
-
 
 function initializeMap() {
  

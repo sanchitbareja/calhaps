@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from events.views import home_grid, home_map, home_two
+from events.views import home_grid, home_map, home_two, feedback_form, add_event
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^tdcv2/$', home_two, name='tdcv2'),
     url(r'^logout/$', logout_view, name='logout'),
     url(r'^login-error/$', login_error, name='login-error'),
+    url(r'^feedback/$',feedback_form),
+    url(r'^add/event/$',add_event),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

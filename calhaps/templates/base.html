@@ -45,7 +45,7 @@
 
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
       <div id="wrap">
-
+        {% csrf_token %}
         <div id="header">
           {% block topbar_base %}
             {% include "_top_bar.html" %}

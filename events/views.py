@@ -56,3 +56,25 @@ def home_two(request):
 
         return render_to_response('tdcv2.html', {'version': version},
                                   RequestContext(request))
+
+
+def feedback_form(request):
+    """post feedback form and send email"""
+    results = {'success':False}
+    if(request.method == u'POST'):
+        POST = request.POST
+        send_mail('[CalHaps] Someone just left you a feedback!', POST['feedback']+" REPLY TO EMAIL: "+POST['replyToEmail'], 'caleventsinfo@gmail.com', EVENT_MASTERS, fail_silently=False)
+        results['success'] = True
+    json_results = simplejson.dumps(results)
+    return HttpResponse(json_results, mimetype='application/json')
+
+def add_event(request):
+    """post new event and send email"""
+    results = {'success':False}
+    if(request.method == u'POST'):
+        POST = request.POST
+        emailBody = "Event Description: "+POST['eventDescription']+"--Event Title: "+POST['eventTitle']+"--When: "+POST['eventWhen']+"--Where: "+POST['eventWhere']+"--Host: "+POST['eventHost']
+        send_mail('[CalHaps] Someone wants to add an event!', emailBody, 'caleventsinfo@gmail.com', EVENT_MASTERS, fail_silently=False)
+        results['success'] = True
+    json_results = simplejson.dumps(results)
+    return HttpResponse(json_results, mimetype='application/json')
