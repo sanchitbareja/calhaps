@@ -19,7 +19,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['groups','user_permissions','username','email', 'is_admin','first_name','last_name','thumbnail_profile_pic','profile_pic','personal_events']
+        fields = ['groups','user_permissions','username','email', 'is_admin','first_name','last_name','thumbnail_profile_pic','profile_pic']
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -50,7 +50,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['groups','user_permissions','username','email', 'is_admin','first_name','last_name', 'thumbnail_profile_pic','profile_pic','personal_events']
+        fields = ['groups','user_permissions','username','email', 'is_admin','first_name','last_name', 'thumbnail_profile_pic','profile_pic']
         
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -77,7 +77,7 @@ class UserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username','email', 'password1', 'password2','first_name','last_name','thumbnail_profile_pic','profile_pic','personal_events')}
+            'fields': ('username','email', 'password1', 'password2','first_name','last_name','thumbnail_profile_pic','profile_pic')}
         ),
     )
     search_fields = ('username','email',)
