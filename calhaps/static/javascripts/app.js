@@ -203,7 +203,7 @@ function attach_events_to_markers(marker, newli, event_object){
 							'<div id="markerContentMainText">'+
 								'<img id="markerContentImage" src="'+event_object['imageUrl']+'" />'+
 								'<p>'+event_object['description'].substr(0,150)+'...'+
-								'<a href="/event/'+event_object['club']['id']+'/">'+' More</a></p>'+
+								'<a href="/event/'+event_object['id']+'/">'+' More</a></p>'+
 							'</div>'+
 							'<div id="markerContentWhereWhenDiv">'+
 								'<p class="success label" id="markerContentWhereWhenText">@ '+event_object['location']['name'].substr(0,12)+', '+formatAMPM(new Date(event_object['startTime']))+'</p>'+
