@@ -26,7 +26,7 @@ TYPE_OF_EVENT_CHOICES = (
 	('Green','Green'),
 	('Celebrity','Celebrity'),
 	('Exhibitions','Exhibitions'),
-	('Other','Others')
+	('Others','Others')
 	)
 
 TYPE_OF_EVENT_CHOICES_HIDDEN = (
@@ -42,7 +42,7 @@ TYPE_OF_EVENT_CHOICES_HIDDEN = (
 	('Green','Green'),
 	('Celebrity','Celebrity'),
 	('Exhibitions','Exhibitions'),
-	('Other','Others'),
+	('Others','Others'),
 	('halloween','halloween'),
 	)
 
