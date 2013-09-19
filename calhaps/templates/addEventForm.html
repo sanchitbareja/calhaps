@@ -8,7 +8,7 @@
 		     		<label class="right inline" id="eventTitleLabel">Event name:</label>
 		     	</div>
 		     	<div class="large-9 columns">
-		     		<input type="text" placeholder="E.g. Boogy Night or Dance Tryouts" id="eventTitle"/>
+		     		<input type="text" placeholder="Boogy Night or Dance Tryouts" id="eventTitle"/>
 		     	</div>
 		    </div>
 		    <div class="row">
@@ -33,6 +33,14 @@
 		     	</div>
 		     	<div class="large-9 columns">
 		     		<input type="text" placeholder="starts @ 10pm" id="eventTime"/>
+	     		</div>
+	     	</div>
+	     	<div class="row">
+		     	<div class="large-3 columns">
+		     		<label class="right inline" id="eventImageLabel">Image URL:</label>
+		     	</div>
+		     	<div class="large-9 columns">
+		     		<input type="text" placeholder="(required for events to appear in grid view) http://cssdeck.com/uploads/media/items/2/2v3VhAp.png" id="eventImage"/>
 	     		</div>
 	     	</div>
 	     	<div class="row">
@@ -105,7 +113,7 @@
 			$.ajax({
 				type: "POST",
 				url: "/add/event/",
-				data: { eventDescription: $("#eventDescription").val(), eventTitle: $("#eventTitle").val(), eventWhen: $("#eventWhen").val(), eventTime: $("#eventTime").val(), eventWhere: $("#eventWhere").val(), eventHost: $("#eventHost").val() , csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+				data: { eventDescription: $("#eventDescription").val(), eventTitle: $("#eventTitle").val(), eventWhen: $("#eventWhen").val(), eventTime: $("#eventTime").val(), eventWhere: $("#eventWhere").val(), eventImageUrl: $("#eventImage").val(), eventHost: $("#eventHost").val() , csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
 			}).done(function( returnData ) {
 				if(returnData['success']){
 					$("#addEventFormSubmit").remove();

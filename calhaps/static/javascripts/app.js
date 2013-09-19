@@ -134,7 +134,7 @@ function get_filters() {
 		});
 	}
 
-	if(filters){
+	if(filters.length == 0){
 		filters = all_filters;
 	}
 
@@ -143,8 +143,8 @@ function get_filters() {
 
 function toggle_switch(label_for, element) {
 	if($(element).is(":checked")){
-		$("label[for="+label_for+"]").parent().css('background','white');
-		$("label[for="+label_for+"]").css('color','black');
+		$("label[for="+label_for+"]").parent().css('background','rgba(40,40,40,0.8)');
+		$("label[for="+label_for+"]").css('color','white');
 	} else {
 		$("label[for="+label_for+"]").parent().css('background','transparent');
 		$("label[for="+label_for+"]").css('color','#aaa');
@@ -186,9 +186,9 @@ function update_grid(events) {
 
 	// add stuff to list and add markers to map
 	for (var i in events) {
-		
-		new_grid_item = create_grid_element(events[i]);
-
+		if(events[i]['imageUrl']){
+			new_grid_item = create_grid_element(events[i]);
+		}
 		console.log('updating grid');
 	};
 }
@@ -196,16 +196,17 @@ function update_grid(events) {
 function attach_events_to_markers(marker, newli, event_object){
 	var contentInfo = 	'<div id="markerContentInfo"><div id="tipBox"></div>'+
 							'<div id="markerContentHeader">'+
-								'<div id="markerContentHeaderText">'+event_object['title']+
-									', <a href="javascript:;"'+event_object['club']['id']+'</a>'+
+								'<div id="markerContentHeaderText">'+event_object['title'].substr(0,20)+
+									', '+event_object['club']['name']+''+
 								'</div>'+
 							'</div>'+
-							'<br/><div id="markerContentWhereWhenDiv">'+
-							'<p class="radius success label" id="markerContentWhereWhenText">@ '+event_object['location']['name']+', '+formatAMPM(new Date(event_object['startTime']))+'</p>'+
-							'<br /></div>'+
 							'<div id="markerContentMainText">'+
 								'<img id="markerContentImage" src="'+event_object['imageUrl']+'" />'+
-								'<p>'+event_object['description']+'</p>'+
+								'<p>'+event_object['description'].substr(0,150)+'...'+
+								'<a href="/event/'+event_object['club']['id']+'/">'+' More</a></p>'+
+							'</div>'+
+							'<div id="markerContentWhereWhenDiv">'+
+								'<p class="success label" id="markerContentWhereWhenText">@ '+event_object['location']['name'].substr(0,12)+', '+formatAMPM(new Date(event_object['startTime']))+'</p>'+
 							'</div>'+
 						'</div>';
 
@@ -232,7 +233,7 @@ function attach_events_to_markers(marker, newli, event_object){
 		,boxStyle: {
 			background: "white",
 			width:"300px",
-			height:"130px",
+			height:"140px",
 			opacity: 1.0
 		}
 		,disableAutoPan: false
@@ -255,7 +256,7 @@ function attach_events_to_markers(marker, newli, event_object){
 }
 
 function create_list_element(event_object) {
-	var list_item = $.parseHTML('<li><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title']+'</a></li>');
+	var list_item = $.parseHTML('<li><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,20)+'</a></li>');
 	$(list_id).append(list_item);
 	return list_item[0];
 }
@@ -264,8 +265,8 @@ function create_grid_element(event_object) {
 	var grid_item = $.parseHTML('<a href="/event/'+event_object['id']+'/"><div class="pin">'+
           '<img style="min-height:8em;width:inherit;" src="'+event_object['imageUrl']+'" />'+
           '<div class="pin-text">'+
-            '<h5 class="grid_title">'+event_object['title']+'</h5>'+
-            '<p class="grid_text">@'+event_object['location']['name']+', '+event_object['startTime']+'</p>'+
+            '<h5 class="grid_title">'+event_object['title'].substr(0,20)+'</h5>'+
+            '<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+', '+formatAMPM(new Date(event_object['startTime']))+'</p>'+
           '</div>'+
         '</div></a>');
 	$(pins_id).append(grid_item);
@@ -279,7 +280,7 @@ function create_marker(event_object) {
 	    draggable:false,
 	    animation: google.maps.Animation.DROP,
 	    position: newMarkerPos,
-	    title:event_object['title']
+	    title:event_object['title'].substr(0,20)
 	});
 
 	console.log(newMarkerPos);
@@ -330,7 +331,6 @@ function loadScript() {
   	script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAdKiY3Szf1k-5KA4oTbslJrg3RPrna2rQ&sensor=false&callback=initialize';
   	script.onload = function() {
      	initialize();
-     	console.log("hello");
   	};
   	document.body.appendChild(script);
 }

@@ -61,7 +61,7 @@ def add_event(request):
     results = {'success':False}
     if(request.method == u'POST'):
         POST = request.POST
-        emailBody = "Event Description: "+POST['eventDescription']+"--Event Title: "+POST['eventTitle']+"--When: "+POST['eventWhen']+"--Where: "+POST['eventWhere']+"--Host: "+POST['eventHost']
+        emailBody = "Event Description: "+POST['eventDescription']+"--Event Title: "+POST['eventTitle']+"--When: "+POST['eventWhen']+"--Where: "+POST['eventWhere']+"--Image URL: "+POST['eventImageUrl']+"--Host: "+POST['eventHost']
         send_mail('[CalHaps] Someone wants to add an event!', emailBody, 'caleventsinfo@gmail.com', EVENT_MASTERS, fail_silently=False)
         results['success'] = True
     json_results = simplejson.dumps(results)

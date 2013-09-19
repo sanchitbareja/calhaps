@@ -2,21 +2,31 @@
 {% load i18n %}
 {% load url from future %}
 
+<!-- Font Collection -->
+<link href='http://fonts.googleapis.com/css?family=Cabin:700italic' rel='stylesheet' type='text/css'>
 {% csrf_token %}
 <div class="fixed contain-to-grid">
   <nav class="top-bar">
     <section class="top-bar-section" id="titleTab">
       <!-- Left Nav Section -->
       <ul class="left">
-        <li class= "active" id="titleName"><a href="#">THE DAILY CALENDAR</a></li>
+        <li class= "active" id="titleName"><a href="/" style="font-family: 'Cabin', sans-serif; font-size:37px; font-style: italic;">THE DAILY CALENDAR</a></li>
       </ul>
       <!-- Right Nav Section -->
       <ul class="right" style="padding-right:8.4%">
-        <li><a href="#" data-reveal-id="addEventModal" style="background:red;"><img src="{% static "images/add-event.png" %}" style="height:20px;margin-right:0.5em;">ADD EVENT</a></li>
+        <li><a href="#" data-reveal-id="addEventModal" id="addEventButton"><p>+</p>&nbsp;&nbsp;Add Event</a></li>
         {% if user.is_authenticated %}
-        <li class="active"><a href="/logout/" style="background:black;color:white;">Logout</a></li>
+        <li class="has-dropdown">
+          <a href="#" data-dropdown="dropLogin" id="loggedInButton"><img src="{{ user.thumbnail_profile_pic }}">&nbsp;&nbsp;{{ user.first_name }}</a>
+          <ul class="dropdown">
+            <li><a href="/">Favorites</a></li>
+            <li><a href="#" data-reveal-id="contactUsModal">Contact Us</a></li>
+            <li><a href="#" data-reveal-id="feedbackModal">Feedback Us&nbsp;&nbsp;<img src="{% static "images/feedback_box.png" %}" style="height:1em;"/></a></li>
+            <li><a href="/logout/">Logout</a></li>
+          </ul>
+        </li>
         {% else %}
-        <li class="active"><a href="/login/facebook/" style="background:black;color:white;"><img src="{% static "images/login-tab.png" %}" style="height:20px;margin-right:0.5em;">LOGIN</a></li>
+        <li><a href="/login/facebook/" id="loggedOutButton"><img src="{% static "images/login-tab.png" %}">Login</a></li>
         {% endif %}
         <!-- <li class="active"><a href=""><img src="{% static "images/search-symbol.png" %}" style="height:25px;"></a></li> -->
        </ul>
@@ -29,6 +39,11 @@
 <!-- Add Event Form -->
 {% include "addEventForm.html" %}
 
+<!-- Feedback Form -->
+{% include "feedbackForm.html" %}
+
+<!-- Contact Us Information -->
+{% include "contactUs.html" %}
 
 <!-- <h2 id="heading">Logged in!</h2>
 

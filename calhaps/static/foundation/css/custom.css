@@ -4,8 +4,8 @@ html, body {
 
 
 #map-content {
-	padding-top: 0.5em;
-	padding-bottom: 3.5em;
+	padding-top: 0em;
+	padding-bottom: 0em;
 }
 
 /* HEADER STYLING */
@@ -59,6 +59,55 @@ html, body {
 	position:relative;
 	top:4px;
 	left:-4px;
+}
+
+/* TOP BAR STYLING */
+
+#addEventButton {
+	background:#EE6D2B;
+}
+
+#addEventButton > p {
+	margin:0px; 
+	line-height:1; 
+	display:inline; 
+	font-size:25px; 
+	text-align:left; 
+	top:2px; 
+	position: relative;
+}
+
+#addEventButton:hover {
+	background: rgba(238, 109, 43, 0.8);
+}
+
+#loggedInButton {
+	background:black;
+	color:white;
+	padding-left:0px;
+}
+
+#loggedInButton > img {
+	max-height:42px;
+	top:0px;
+}
+
+#loggedInButton:hover {
+	background: rgba(0,0,0,0.8);
+}
+
+#loggedOutButton {
+	background:black;
+	color:white;
+}
+
+#loggedOutButton > img {
+	height:20px;
+	margin-right:0.5em;
+}
+
+#loggedOutButton:hover {
+	background: rgba(0,0,0,0.8);
 }
 
 /* BODY STYLING */
@@ -127,12 +176,11 @@ html, body {
 }
 
 #markerContentHeaderText{
-	text-transform:uppercase;
-	background-color: #FF4500;
+	background-color: #EE6D2B;
 	color:white;
 	font-size:12.5px;
 	height:25px;
-	width:290px;
+	width:100%;
 	padding-top: 7px;
 	padding-left: 3px;
 	font-weight: bold;
@@ -155,20 +203,22 @@ html, body {
 }
 
 #markerContentMainText {
-	margin-bottom: 9px;
-	/*padding-top: 55px;
-	margin-right:0px;
-	margin-left:0px;
-	margin-bottom: 0px;*/
+	margin: 9px;
+}
+
+#markerContentWhereWhenDiv {
+	display: block;
+	position: absolute;
+	width:100%;
+	top: 120px;
+	text-align: center;
 }
 
 #markerContentWhereWhenText{
 	font-size: 11px;
-	background-color: #00CED6;
-	display:inline;
-
-
-
+	display:block;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 #markerContentMainTextInfo{
@@ -483,6 +533,10 @@ background-color: #6600CC;
 	color: #aaa;
 }
 
+#filterDropdownTable tr > td > label:hover {
+	color: black;
+}
+
 #filterDropdownTable tr > td > input[type=checkbox]:checked ~ #filterCheckmark {
 	display: block;
 }
@@ -526,6 +580,7 @@ background-color: #6600CC;
 	padding: 0px;
 	background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
 	opacity: 1;
+	width: 100%;
 }
 
 .pin img {
@@ -534,11 +589,13 @@ background-color: #6600CC;
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 0em;
 	margin-bottom: 0em;
+	min-height: 5em;
 }
 
 .pin-text {
 	position: absolute;
-	background-color: rgba(40,40,40, 0.7);
+	background-color: rgba(40,40,40, 0.3);
+	text-shadow: 1px 2px 2px black;
 	width: inherit;
 	margin-top: -3.8em;
 	color:white;

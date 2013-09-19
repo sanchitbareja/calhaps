@@ -6,6 +6,7 @@ django-extensions==1.1.1
 django-social-auth==0.7.25
 django-storages==1.1.8
 django-tastypie==0.9.15
+django-debug-toolbar
 gunicorn==0.17.4
 httplib2==0.8
 mimeparse==0.1.3

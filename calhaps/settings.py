@@ -94,7 +94,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_auth.middleware.SocialAuthExceptionMiddleware',
     'middleware.crossdomainxhr.XsSharing',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
+
+INTERNAL_IPS = ('127.0.0.1',)
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}
 
 # settings for cross-domain requests (added this to allow api access)
 # XS_SHARING_ALLOWED_ORIGINS = "http://127.0.0.1:8000/"
@@ -130,6 +136,7 @@ INSTALLED_APPS = (
     'tastypie',
     'storages',
     'social_auth',
+    'debug_toolbar',
     'gunicorn',
 
     # local apps
