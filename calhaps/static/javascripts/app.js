@@ -4,7 +4,8 @@
 
 var display_date = new Date(); // will need to increment/decrement dates depending on what they request. start with current_date
 var all_filters = ['Parties','Concerts','Greeklife','Sports','Philanthropy','Performances','Conferences','Movies','Food','Green','Celebrity','Exhibitions','Others']
-var list_id = '#filteredList'
+var list_id = '#filteredList';
+var favorite_list_id = '#favorited_events';
 var pins_id = '#pin-columns';
 var number_of_events_id = '#number_events';
 var map;
@@ -78,10 +79,31 @@ function get_events_and_update_ui(filters_text, date) {
 			update_number_of_events(data['response']['events']);
 			update_list_and_map(data['response']['events']);
 			update_grid(data['response']['events']);
+			update_favorite_events(data['response']['events']);
 			console.log(display_date);
 			update_date_display();
 		}
 	});
+}
+
+function post_favorite_and_update_ui(event_id){
+	user_id = $("#user_id").val();
+	$.ajax({ 
+      url:'/api/v1/favorites/', 
+      type:'POST',
+      dataType: 'json',
+      data: JSON.stringify({
+        'event': event_id, 
+        'user': user_id
+      }), 
+      contentType: 'application/json',
+      statusCode : {
+        201: function(data, textStatus, jsXHR){
+          console.log("Successfully favorited company!");
+          //update UI for that particular event_id here.
+        }
+      }
+    });
 }
 
 function update_event_modal(title, description, image_url, location_name, start_time, club_name, club_description, club_image_url){
@@ -99,7 +121,7 @@ function update_event_modal(title, description, image_url, location_name, start_
 		$("#eventInfoModal").css("background","url(\'"+image_url+"\')");
 	}
 	$("#eventModalLocationName").text(location_name);
-	$("#eventModalStartTime").text(start_time);
+	$("#eventModalStartTime").text(formatAMPM(new Date(start_time)));
 	$("#eventModalClubName").text(club_name);
 	$("#eventModalClubDescription").text(club_description);
 	if(club_image_url){
@@ -216,6 +238,19 @@ function update_grid(events) {
 	};
 }
 
+function update_favorite_events(events){
+	user_id = parseInt($("#user_id").val());
+	console.log("update_favorite_events");
+	console.log(user_id);
+	for (var i in events) {
+		console.log(events[i]["favorites"]);
+		if(events[i]["favorites"].indexOf(user_id) > -1){
+			$(favorite_list_id).append($.parseHTML('<li><a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+events[i]['title']+'\',\''+events[i]['description']+'\',\''+events[i]['imageUrl']+'\',\''+events[i]['location']['name']+'\',\''+events[i]['startTime']+'\',\''+events[i]['club']['name']+'\',\''+events[i]['club']['description']+'\',\''+events[i]['club']['imageUrl']+'\')">'+events[i]['title'].substr(0,15)+'</a></li>'));
+		}
+		console.log('updating favorites');
+	};
+}
+
 function attach_events_to_markers(marker, newli, event_object){
 	var contentInfo = 	'<div id="markerContentInfo"><div id="tipBox"></div>'+
 							'<div id="markerContentHeader">'+
@@ -278,19 +313,34 @@ function attach_events_to_markers(marker, newli, event_object){
 	google.maps.event.addDomListener(newli,'mouseout', toggleBounce);
 }
 
+function disable_button(element){
+	$(element).addClass("disabled");
+	$(element).text("Favorited");
+}
+
 function create_list_element(event_object) {
-	var list_item = $.parseHTML('<li><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,20)+'</a></li>');
+	user_id = parseInt($("#user_id").val());
+	var list_item = $.parseHTML('<li><a class="button tiny secondary" href="#" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" >Favorite </a><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,15)+'</a></li>');
+	if(event_object["favorites"].indexOf(user_id) > -1){
+		list_item = $.parseHTML('<li><a class="button tiny secondary disabled" href="#">Favorited </a><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,15)+'</a></li>');
+	}	
 	$(list_id).append(list_item);
 	return list_item[0];
 }
 
 function create_grid_element(event_object) {
+	user_id = parseInt($("#user_id").val());
+	var favorite_item = '<a href="#" class="button tiny secondary" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" >Favorite! </a>';
+	if(event_object["favorites"].indexOf(user_id) > -1){
+		favorite_item = '<a class="button tiny secondary disabled" href="#">Favorited </a>';
+	}
 	var grid_item = $.parseHTML('<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')">'+
 		'<div class="pin">'+
           '<img style="min-height:8em;width:inherit;" src="'+event_object['imageUrl']+'" />'+
           '<div class="pin-text">'+
             '<h5 class="grid_title">'+event_object['title'].substr(0,20)+'</h5>'+
-            '<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+'</p>'+
+            '<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+
+            favorite_item+'</p>'+
           '</div>'+
         '</div></a>');
 	$(pins_id).append(grid_item);

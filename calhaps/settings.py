@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'users',
     'events',
     'clubs',
+    'favorites',
     'api',
 )
 

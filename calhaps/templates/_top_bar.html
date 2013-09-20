@@ -22,12 +22,16 @@
             <li>
               <div style="height:100px;width:300px;background:white;">
                 <div class="row">
-                  <p>Your Next Event:</p>
-                  <p>Kanye West Presents: Watch a God Glow in the park</p>
+                  <span>Your Next Event:</span>
+                  <span>Kanye West Presents: Watch a God Glow in the park</span>
+                  <ul id="favorited_events" style="color:white;">
+                    <!-- Favorited Events -->
+                  </ul>
                 </div>
               <div>
             </li>
-            <li><a href="/logout/">Logout</a></li>
+            <li><a href="/logout/" style="text-align:right;">Logout</a></li>
+            <input type="hidden" name="user_id" value="{{user.id}}" id="user_id">
           </ul>
         </li>
         {% else %}
@@ -37,8 +41,6 @@
     </section>
   </nav>
 </div>
-
-
 
 <!-- Add Event Form -->
 {% include "addEventForm.html" %}

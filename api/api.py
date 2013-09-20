@@ -19,6 +19,8 @@ from django.http import Http404
 from django.db.models import Q
 from clubs.models import Club
 from events.models import Event, Location
+from favorites.models import Favorite
+from users.models import User
 import datetime
 
 class ClubResource(ModelResource):
@@ -172,6 +174,9 @@ class EventResource(ModelResource):
         # no renaming required for 'advertise'
         bundle.data['advertise'] = bundle.obj.advertise
 
+        # sends a list of favorites for the event
+        bundle.data['favorites'] = [favorite.user.id for favorite in Favorite.objects.filter(event__id=bundle.obj.id)]
+
         return bundle
 
     def alter_list_data_to_serialize(self, request, data):
@@ -205,3 +210,39 @@ class EventResource(ModelResource):
 
     def determine_format(self, request):
         return 'application/json'
+
+class FavoriteResource(ModelResource):
+    class Meta:
+        queryset = Favorite.objects.all()
+        resource_name = 'favorites'
+        # Add it here.
+        # authentication = BasicAuthentication()
+        authorization = DjangoAuthorization()
+
+        allowed_methods = ['post']
+
+    def obj_create(self, bundle, **kwargs):
+        """
+        Post favorites an event for the user
+        """
+        try:
+            print "11"
+            event_id = bundle.data['event']
+            user_id = bundle.data['user']
+            print "event_id"+event_id
+            print "user_id"+user_id
+            event = Event.objects.get(id=event_id)
+            user = User.objects.get(id=user_id)
+            print "22"
+            new_favorite = Favorite(event=event, user=user)
+            new_favorite.save()
+            print '33'
+            bundle.obj = new_favorite
+        except Exception as e:
+            print e
+            raise ImmediateHttpResponse(HttpForbidden("Invalid POST bundle."))
+        return bundle
+
+    def determine_format(self, request):
+        return 'application/json'
+
