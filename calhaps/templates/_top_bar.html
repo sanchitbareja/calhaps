@@ -17,18 +17,22 @@
         <li><a href="#" data-reveal-id="addEventModal" id="addEventButton"><p>+</p>&nbsp;&nbsp;Add Event</a></li>
         {% if user.is_authenticated %}
         <li class="has-dropdown">
-          <a href="#" data-dropdown="dropLogin" id="loggedInButton"><img src="{{ user.thumbnail_profile_pic }}">&nbsp;&nbsp;{{ user.first_name }}</a>
-          <ul class="dropdown">
-            <!-- <li><a href="/">Favorites</a></li> -->
-            <li><a href="#" data-reveal-id="contactUsModal">Contact Us</a></li>
-            <li><a href="#" data-reveal-id="feedbackModal">Feedback Us&nbsp;&nbsp;<img src="{% static "images/feedback_box.png" %}" style="height:1em;"/></a></li>
+          <a href="#" id="loggedInButton"><img src="{{ user.thumbnail_profile_pic }}">&nbsp;&nbsp;{{ user.first_name }}</a>
+          <ul class="dropdown" style="box-shadow: 0 0 10px black;">
+            <li>
+              <div style="height:100px;width:300px;background:white;">
+                <div class="row">
+                  <p>Your Next Event:</p>
+                  <p>Kanye West Presents: Watch a God Glow in the park</p>
+                </div>
+              <div>
+            </li>
             <li><a href="/logout/">Logout</a></li>
           </ul>
         </li>
         {% else %}
         <li><a href="/login/facebook/" id="loggedOutButton"><img src="{% static "images/login-tab.png" %}">Login</a></li>
         {% endif %}
-        <!-- <li class="active"><a href=""><img src="{% static "images/search-symbol.png" %}" style="height:25px;"></a></li> -->
        </ul>
     </section>
   </nav>

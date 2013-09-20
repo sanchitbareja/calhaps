@@ -1,0 +1,28 @@
+<div id="eventInfoModal" class="reveal-modal large">
+	<div id="eventInfoModalForeground">
+	 	<h1 style="text-align:center;" id="eventModalTitle"></h1>
+	 	<div class="row">
+	  		<div class="large-3 columns">
+	  			<img id="eventModalClubImage">
+	  		</div>
+	  		<div class="large-9 columns">
+	  			<p class="success label">@<span id="eventModalLocationName"></span>, <span id="eventModalStartTime"></span></p>
+	  			<hr>
+	  			<p id="eventModalDescription"></p>
+	  			<h5>About the organization: <span id="eventModalClubName"></span></h5>
+	  			<p id="eventModalClubDescription"></p>
+			</div>
+	<!-- 			<div class="large-3 columns">
+				{% if similarEvents %}
+					<h3>Similar Events</h3>
+					<ul class="side-nav">
+						{% for event in similarEvents %}
+							<li><a href="/event/{{ event.id }}/">{{ event.title }}</a></li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			</div> -->
+		</div>
+	 	<a class="close-reveal-modal">&#215;</a>
+ 	</div>
+</div>

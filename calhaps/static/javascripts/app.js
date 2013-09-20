@@ -84,6 +84,29 @@ function get_events_and_update_ui(filters_text, date) {
 	});
 }
 
+function update_event_modal(title, description, image_url, location_name, start_time, club_name, club_description, club_image_url){
+	console.log(title);
+	console.log(description);
+	console.log(image_url)
+	console.log(location_name);
+	console.log(start_time);
+	console.log(club_name);
+	console.log(club_description);
+	console.log(club_image_url);
+	$("#eventModalTitle").text(title);
+	$("#eventModalDescription").text(description);
+	if(image_url){
+		$("#eventInfoModal").css("background","url(\'"+image_url+"\')");
+	}
+	$("#eventModalLocationName").text(location_name);
+	$("#eventModalStartTime").text(start_time);
+	$("#eventModalClubName").text(club_name);
+	$("#eventModalClubDescription").text(club_description);
+	if(club_image_url){
+		$("#eventModalClubImage").attr("src",club_image_url);
+	}
+}
+
 function update_date_display() {
 	var weekday=new Array(7);
 	weekday[0]="Sunday";
@@ -203,7 +226,7 @@ function attach_events_to_markers(marker, newli, event_object){
 							'<div id="markerContentMainText">'+
 								'<img id="markerContentImage" src="'+event_object['imageUrl']+'" />'+
 								'<p>'+event_object['description'].substr(0,150)+'...'+
-								'<a href="/event/'+event_object['id']+'/">'+' More</a></p>'+
+								'<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')"> More</a>'+
 							'</div>'+
 							'<div id="markerContentWhereWhenDiv">'+
 								'<p class="success label" id="markerContentWhereWhenText">@ '+event_object['location']['name'].substr(0,12)+', '+formatAMPM(new Date(event_object['startTime']))+'</p>'+
@@ -262,11 +285,12 @@ function create_list_element(event_object) {
 }
 
 function create_grid_element(event_object) {
-	var grid_item = $.parseHTML('<a href="/event/'+event_object['id']+'/"><div class="pin">'+
+	var grid_item = $.parseHTML('<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')">'+
+		'<div class="pin">'+
           '<img style="min-height:8em;width:inherit;" src="'+event_object['imageUrl']+'" />'+
           '<div class="pin-text">'+
             '<h5 class="grid_title">'+event_object['title'].substr(0,20)+'</h5>'+
-            '<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+', '+formatAMPM(new Date(event_object['startTime']))+'</p>'+
+            '<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+'</p>'+
           '</div>'+
         '</div></a>');
 	$(pins_id).append(grid_item);

@@ -15,7 +15,7 @@
 {% block content %}
 
 <div class="row collapse">
-  <div class="large-1 columns">
+  <div class="large-1 columns hide-for-small">
     <div id="sideControls">
       <ul class="side-nav">
         <li style="margin:10px 0 0 0;"><a href="javscript:;"><p style="font-size:22pt;margin-bottom:0;color:#EC1C58;" id="number_events">0</p><p style="font-size:12pt;margin-top:-10px;margin-bottom:0;color:#686969;">events</p><p style="font-size:12pt;margin-top:-5px;margin-bottom:0;color:#EC1C58;" id="noOfEventsDateDisplay">today</p></a></li>
@@ -104,7 +104,7 @@
       </div>
     {% endif %}
   </div>
-  <div class="large-1 columns">
+  <div class="large-1 columns hide-for-small">
     <div id="sideFilters">
       <table id="filterDropdownTable">
         <tr>
@@ -140,6 +140,9 @@
     </div>
   </div>
 </div>
+
+<!-- Event Information Modal -->
+{% include "eventInfoModal.html" %}
 
 <script type="text/javascript">
 

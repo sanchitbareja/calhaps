@@ -133,7 +133,7 @@ html, body {
 	margin-top: -3em;  /* negative value of footer height */
 	height: 3em;
 	clear:both;
-	background-color: #F2F2F2;
+	background-color: white;
 }
 
 #footer-font {
@@ -154,6 +154,15 @@ html, body {
 
 .capitalize-text {
 	text-transform: uppercase;
+}
+
+.capitalize-text > a {
+	text-transform: uppercase;
+	color:black;
+}
+
+.capitalize-text > a:hover {
+	color:#EE6D2B;
 }
 
 .whiteText {
@@ -637,6 +646,10 @@ background-color: #6600CC;
 	opacity: 0.4;
 }
 
+.pin:hover {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
 /* -----------------------------------------
    Spinner
 ----------------------------------------- */
@@ -677,4 +690,21 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
  @-webkit-keyframes fade {
   from {opacity: 1;}
   to {opacity: 0.25;}
+}
+
+
+/* -----------------------------------------
+   Event Modal
+----------------------------------------- */
+
+#eventInfoModal {
+	padding:0;
+}
+
+#eventInfoModalForeground {
+	background:rgba(255,255,255,0.9);
+}
+
+#eventModalTitle {
+	margin-top: 0;
 }
