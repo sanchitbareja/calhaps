@@ -320,9 +320,9 @@ function disable_button(element){
 
 function create_list_element(event_object) {
 	user_id = parseInt($("#user_id").val());
-	var list_item = $.parseHTML('<li><a class="button tiny secondary" href="#" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" >Favorite </a><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,15)+'</a></li>');
+	var list_item = $.parseHTML('<li><button class="button tiny secondary" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" >Favorite </button><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,15)+'</a></li>');
 	if(event_object["favorites"].indexOf(user_id) > -1){
-		list_item = $.parseHTML('<li><a class="button tiny secondary disabled" href="#">Favorited </a><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,15)+'</a></li>');
+		list_item = $.parseHTML('<li><button class="button tiny secondary disabled">Favorited </button><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,15)+'</a></li>');
 	}	
 	$(list_id).append(list_item);
 	return list_item[0];
@@ -330,9 +330,9 @@ function create_list_element(event_object) {
 
 function create_grid_element(event_object) {
 	user_id = parseInt($("#user_id").val());
-	var favorite_item = '<a href="#" class="button tiny secondary" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" >Favorite! </a>';
+	var favorite_item = '<button class="button tiny secondary" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" >Favorite! </button>';
 	if(event_object["favorites"].indexOf(user_id) > -1){
-		favorite_item = '<a class="button tiny secondary disabled" href="#">Favorited </a>';
+		favorite_item = '<button class="button tiny secondary disabled">Favorited </button>';
 	}
 	var grid_item = $.parseHTML('<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')">'+
 		'<div class="pin">'+
