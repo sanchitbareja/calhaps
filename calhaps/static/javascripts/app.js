@@ -101,6 +101,8 @@ function post_favorite_and_update_ui(event_id){
         201: function(data, textStatus, jsXHR){
           console.log("Successfully favorited company!");
           //update UI for that particular event_id here.
+          console.log(data);
+          add_favorite_event(data);
         }
       }
     });
@@ -246,10 +248,14 @@ function update_favorite_events(events){
 	for (var i in events) {
 		console.log(events[i]["favorites"]);
 		if(events[i]["favorites"].indexOf(user_id) > -1){
-			$(favorite_list_id).append($.parseHTML('<li><a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+events[i]['title']+'\',\''+events[i]['description']+'\',\''+events[i]['imageUrl']+'\',\''+events[i]['location']['name']+'\',\''+events[i]['startTime']+'\',\''+events[i]['club']['name']+'\',\''+events[i]['club']['description']+'\',\''+events[i]['club']['imageUrl']+'\')">'+events[i]['title'].substr(0,15)+'</a></li>'));
+			add_favorite_event(events[i]);
 		}
 		console.log('updating favorites');
 	};
+}
+
+function add_favorite_event(event_object){
+	$(favorite_list_id).append($.parseHTML('<li><a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')">'+event_object['title'].substr(0,15)+'</a></li>'));
 }
 
 function attach_events_to_markers(marker, newli, event_object){

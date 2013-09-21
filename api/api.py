@@ -218,25 +218,58 @@ class FavoriteResource(ModelResource):
         # Add it here.
         # authentication = BasicAuthentication()
         authorization = DjangoAuthorization()
-
+        always_return_data = True
         allowed_methods = ['post']
+
+    def dehydrate(self, bundle):
+        event = Event.objects.get(id=bundle.obj.event.id)
+        # no renaming required for 'title'
+        bundle.data['title'] = bundle.obj.event.title
+
+        # no renaming required for 'description'
+        bundle.data['description'] = bundle.obj.event.description
+
+        # no renaming required for 'startTime'
+        bundle.data['startTime'] = bundle.obj.event.startTime
+
+        # club related date
+        bundle.data['club'] = {}
+        bundle.data['club']['id'] = bundle.obj.event.club.id
+        bundle.data['club']['name'] = bundle.obj.event.club.name
+        bundle.data['club']['description'] = bundle.obj.event.club.description
+        bundle.data['club']['typeOfOrganization'] = bundle.obj.event.club.typeOfOrganization
+        bundle.data['club']['urlPersonal'] = bundle.obj.event.club.urlPersonal
+        bundle.data['club']['imageUrl'] = bundle.obj.event.club.image
+        bundle.data['club']['founded'] = bundle.obj.event.club.founded
+
+        # only return the lat and lng of the event location without requiring a location resource
+        bundle.data['location'] = {'lat':bundle.obj.event.location.lat,'lng':bundle.obj.event.location.lng, 'name':bundle.obj.event.location.name}
+
+        # rename 'image' to 'imageUrl'
+        bundle.data['imageUrl'] = bundle.obj.event.image
+
+        # return a list for 'typeOfEvent' - based on the manyToMany model
+        bundle.data['typeOfEvent'] = [{"type":eventType.type} for eventType in bundle.obj.event.typeOfEvent.all()]
+
+        # no renaming required for 'advertise'
+        bundle.data['advertise'] = bundle.obj.event.advertise
+
+        # sends a list of favorites for the event
+        bundle.data['favorites'] = [favorite.user.id for favorite in Favorite.objects.filter(event__id=bundle.obj.event.id)]
+
+        return bundle
 
     def obj_create(self, bundle, **kwargs):
         """
         Post favorites an event for the user
         """
         try:
-            print "11"
             event_id = bundle.data['event']
             user_id = bundle.data['user']
-            print "event_id"+event_id
-            print "user_id"+user_id
             event = Event.objects.get(id=event_id)
             user = User.objects.get(id=user_id)
-            print "22"
             new_favorite = Favorite(event=event, user=user)
             new_favorite.save()
-            print '33'
             bundle.obj = new_favorite
         except Exception as e:
             print e
