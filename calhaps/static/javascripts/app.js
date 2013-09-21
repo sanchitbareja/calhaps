@@ -242,6 +242,7 @@ function update_favorite_events(events){
 	user_id = parseInt($("#user_id").val());
 	console.log("update_favorite_events");
 	console.log(user_id);
+	$(favorite_list_id).empty();
 	for (var i in events) {
 		console.log(events[i]["favorites"]);
 		if(events[i]["favorites"].indexOf(user_id) > -1){
@@ -314,15 +315,18 @@ function attach_events_to_markers(marker, newli, event_object){
 }
 
 function disable_button(element){
-	$(element).addClass("disabled");
-	$(element).text("Favorited");
+	$(element).addClass("favorited");
+	$(element).attr("disabled","true");
+	$(element).css("background","url('/site_media/static/images/favorited-event.png') no-repeat");
+	$(element).css("background-size","1.5em");
+	$(element).css("opacity","1");
 }
 
 function create_list_element(event_object) {
 	user_id = parseInt($("#user_id").val());
-	var list_item = $.parseHTML('<li><button class="button tiny secondary" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" >Favorite </button><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,15)+'</a></li>');
+	var list_item = $.parseHTML('<li><button class="favorite_button" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" ></button><a href="javascript:;">'+event_object['title'].substr(0,15)+'</a></li>');
 	if(event_object["favorites"].indexOf(user_id) > -1){
-		list_item = $.parseHTML('<li><button class="button tiny secondary disabled">Favorited </button><a href="javascript:;"><i class="foundicon-smiley" style="margin-bottom:0px; margin-right:10px;"></i> '+event_object['title'].substr(0,15)+'</a></li>');
+		list_item = $.parseHTML('<li><button class="favorited_button favorited" disabled="disabled"></button><a href="javascript:;">'+event_object['title'].substr(0,15)+'</a></li>');
 	}	
 	$(list_id).append(list_item);
 	return list_item[0];
@@ -330,17 +334,17 @@ function create_list_element(event_object) {
 
 function create_grid_element(event_object) {
 	user_id = parseInt($("#user_id").val());
-	var favorite_item = '<button class="button tiny secondary" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" >Favorite! </button>';
+	var favorite_item = '<button class="favorite_button pin-button" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" ></button>';
 	if(event_object["favorites"].indexOf(user_id) > -1){
-		favorite_item = '<button class="button tiny secondary disabled">Favorited </button>';
+		favorite_item = '<button class="favorited_button favorited pin-button" disabled="disabled"></button>';
 	}
 	var grid_item = $.parseHTML('<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')">'+
 		'<div class="pin">'+
           '<img style="min-height:8em;width:inherit;" src="'+event_object['imageUrl']+'" />'+
           '<div class="pin-text">'+
+          	favorite_item+
             '<h5 class="grid_title">'+event_object['title'].substr(0,20)+'</h5>'+
-            '<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+
-            favorite_item+'</p>'+
+            '<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+'</p>'+
           '</div>'+
         '</div></a>');
 	$(pins_id).append(grid_item);
