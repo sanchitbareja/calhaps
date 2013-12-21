@@ -29,6 +29,10 @@ html, body {
 	width: 400px;
 }
 
+#titleName > a:hover {
+	background: none;
+}
+
 .top-bar-section ul li.active > a  {
 	background: white;
 	color: black;
@@ -123,6 +127,7 @@ html, body {
 #main {
 	overflow:auto;
 	padding-bottom: 1em;
+	margin-top: 49px;
 }  /* must be same height as the footer */
 
 
@@ -587,7 +592,7 @@ background-color: #6600CC;
 	-moz-column-break-inside: avoid;
 	column-break-inside: avoid;
 	padding: 0px;
-	background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+	/*background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);*/
 	opacity: 1;
 	width: 100%;
 }
@@ -595,7 +600,7 @@ background-color: #6600CC;
 .pin img {
 	display: block;
 	width: 100%;
-	border-bottom: 1px solid #ccc;
+	/*border-bottom: 1px solid #ccc;*/
 	padding-bottom: 0em;
 	margin-bottom: 0em;
 	min-height: 5em;
@@ -603,7 +608,7 @@ background-color: #6600CC;
 
 .pin-text {
 	position: absolute;
-	background-color: rgba(40,40,40, 0.3);
+	/*background-color: rgba(40,40,40, 0.3);*/
 	text-shadow: 1px 2px 2px black;
 	width: inherit;
 	margin-top: -3.8em;
@@ -647,7 +652,7 @@ background-color: #6600CC;
 }
 
 .pin:hover {
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+	/*box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);*/
 }
 
 /* -----------------------------------------
@@ -710,7 +715,7 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 }
 
 #favorited_events > li > a{
-	color:white;
+
 }
 
 

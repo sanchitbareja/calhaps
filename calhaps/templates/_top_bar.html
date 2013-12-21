@@ -16,20 +16,14 @@
       <ul class="right" style="padding-right:8.4%">
         <li><a href="#" data-reveal-id="addEventModal" id="addEventButton"><p>+</p>&nbsp;&nbsp;Add Event</a></li>
         {% if user.is_authenticated %}
-        <li class="has-dropdown">
-          <a href="#" id="loggedInButton"><img src="{{ user.thumbnail_profile_pic }}">&nbsp;&nbsp;{{ user.first_name }}</a>
-          <ul class="dropdown" style="box-shadow: 0 0 10px black;">
-            <li>
-              <div class="row">
-                <ul id="favorited_events" style="color:white;">
-                  <!-- Favorited Events -->
-                </ul>
-              <div>
-            </li>
+        <li><a href="#" id="loggedInButton" data-dropdown="dropLinks"><img src="{{ user.thumbnail_profile_pic }}">&nbsp;&nbsp;{{ user.first_name }}</a></li>
+          <ul id="dropLinks" class="f-dropdown">
+            <ul id="favorited_events" style="color:white;">
+              <!-- Favorited Events -->
+            </ul>
             <li><a href="/logout/" style="text-align:right;">Logout</a></li>
             <input type="hidden" name="user_id" value="{{user.id}}" id="user_id">
           </ul>
-        </li>
         {% else %}
         <li><a href="/login/facebook/" id="loggedOutButton"><img src="{% static "images/login-tab.png" %}">Login</a></li>
         {% endif %}
@@ -47,33 +41,3 @@
 <!-- Contact Us Information -->
 {% include "contactUs.html" %}
 
-<!-- <h2 id="heading">Logged in!</h2>
-
-<div>
-  <h3>User data:</h3>
-  <table>
-    <tr class="odd"><th>Id:</th> <td>{{ user.id }}</td></tr>
-    <tr class="even"><th>Username:</th> <td>{{ user.username }}</td></tr>
-    <tr class="odd"><th>Email:</th> <td>{{ user.email|default:"Not provided" }}</td></tr>
-    <tr class="even"><th>First name:</th> <td>{{ user.first_name|default:"Not provided" }}</td></tr>
-    <tr class="odd"><th>Last name:</th> <td>{{ user.last_name|default:"Not provided" }}</td></tr>
-    <tr class="even"><th>Last login backend:</th> <td>{{ last_login }}</td></tr>
-  </table>
-</div>
-
-<div>
-
-  <h3>Associate new <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-10" title="OAuth2">OAuth2</a> credentials:</h3>
-  <ul>
-  {% for name in social_auth.backends.oauth2 %}
-    <li><a rel="nofollow" href="{% url "socialauth_begin" name %}">{{ name|title }}</a></li>
-  {% endfor %}
-  </ul>
-
-
-</div>
-
-<div>
-  <a rel="nofollow" class="logout" href="/logout/">Logout</a>
-</div>
- -->
