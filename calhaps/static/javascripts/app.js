@@ -129,6 +129,8 @@ function update_event_modal(title, description, image_url, location_name, start_
 	if(club_image_url){
 		$("#eventModalClubImage").attr("src",club_image_url);
 	}
+	$("#eventInfoModal").foundation("reveal",'open');
+	console.log("open info modal");
 }
 
 function update_date_display() {
