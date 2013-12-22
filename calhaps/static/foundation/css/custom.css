@@ -545,6 +545,7 @@ background-color: #6600CC;
 
 #filterDropdownTable tr > td > label {
 	color: #aaa;
+	margin-bottom: 0px;
 }
 
 #filterDropdownTable tr > td > label:hover {
@@ -715,10 +716,17 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 }
 
 #favorited_events > li > a{
-
+	background: none;
+	width: 100%;
+	color: black;
+	line-height: 30px;
+	border-bottom: 1px solid rgb(241,241,241);
 }
 
-
+#favorited_events > li {
+	clear: both;
+	width: 100%;
+}
 
 /* -----------------------------------------
    Favorite Button
@@ -775,3 +783,35 @@ button[disabled].favorited_button:hover.favorited{
 .pin-button{
 	float: left;
 }
+
+/*
+
+Profile events css
+
+*/
+
+#dropLinks {
+	border: 7px solid rgb(241, 241, 241);
+	width: 250px;
+	padding: 0;
+}
+
+#saved_events_title {
+	color: white;
+	font-size:10px; 
+	font-style:italic;
+	padding: 0px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	text-align: center;
+	border-bottom: 1px solid rgb(200,200,200);
+	background: rgb(55, 207, 255);
+}
+
+#profile_settings {
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 10px;
+}
+
+
