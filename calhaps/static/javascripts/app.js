@@ -27,22 +27,26 @@ function textify_date(){
 }
 
 function to_today_date(){
+	//display_date = new Date().clearTime();
 	display_date = new Date();
 }
 
 function next_date(){
 	// changes to the next day
 	display_date.setDate(display_date.getDate() + 1);
+	//display_date.set(display_date.add({days:1}));
 }
 
 function previous_date(){
 	// changes to the previous day
 	display_date.setDate(display_date.getDate() - 1);
+	//display_date.set(display_date.add({days:-1}));
 }
 
 function next_week_date(){
 	// changes to the next week
 	display_date.setDate(display_date.getDate() + 7);
+	//display_date.set(display_date.add({days:7}));
 }
 
 function formatAMPM(date) {
@@ -135,23 +139,25 @@ function update_event_modal(title, description, image_url, location_name, start_
 
 function update_date_display() {
 	var weekday=new Array(7);
-	weekday[0]="Sunday";
-	weekday[1]="Monday";
-	weekday[2]="Tuesday";
-	weekday[3]="Wednesday";
-	weekday[4]="Thursday";
-	weekday[5]="Friday";
-	weekday[6]="Saturday";
+	weekday[0]="Sun.";
+	weekday[1]="Mon.";
+	weekday[2]="Tues.";
+	weekday[3]="Wed.";
+	weekday[4]="Thur.";
+	weekday[5]="Fri.";
+	weekday[6]="Sat.";
 
 	var current_day = weekday[display_date.getDay()];
 	var current_date = display_date.getDate();
-	if(current_date == 1){
+	//var current_day = display_date.getDayName();
+
+	if(current_date %10 == 1){
 		current_date = ""+current_date+"st "+current_day;
 	}
-	else if(current_date == 2){
+	else if(current_date %10 == 2){
 		current_date = ""+current_date+"nd "+current_day;
 	}
-	else if(current_date == 3){
+	else if(current_date %10 == 3){
 		current_date = ""+current_date+"rd "+current_day;
 	}
 	else {

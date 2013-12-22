@@ -175,6 +175,11 @@ html, body {
 	color: white;
 }
 
+.whiteTextMapTop {
+	color: white;
+	font-size: 12pt;
+}
+
 /* MAP STYLING */
 #map-canvas {
 	height: 675px;
@@ -513,12 +518,13 @@ background-color: #6600CC;
 }
 
 #filterDropdownTable {
-	margin-top: 8px;
+	margin-top: 4px;
 	margin-bottom: 8px;
-	margin-left: 8px;
+	margin-left: 4px;
 	margin-right: 8px;
 	background: transparent;
 	border-spacing: 0;
+	font-size: 14pt;
 	border:none;
 }
 
@@ -534,6 +540,7 @@ background-color: #6600CC;
 	width:99px;
 	color: white;
 	clear: none;
+	font-size: 8pt;
 }
 
 #filterDropdownTable tr > td > input[type=checkbox] {
