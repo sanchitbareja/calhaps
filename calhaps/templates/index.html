@@ -19,6 +19,10 @@
     <div id="sideControls">
       <ul class="side-nav">
         <li style="margin:10px 0 0 0;"><a href="javscript:;"><p style="font-size:22pt;margin-bottom:0;color:#EC1C58;" id="number_events">0</p><p style="font-size:12pt;margin-top:-10px;margin-bottom:0;color:#686969;">events</p><p style="font-size:12pt;margin-top:-5px;margin-bottom:0;color:#EC1C58;" id="noOfEventsDateDisplay">today</p></a></li>
+        <li style="margin:10px 10px 0px 37px; display: inline;">
+          <a style="display:inline;" href="javascript:;" onclick="previous_date(); get_events_and_update_ui(textify_filters(get_filters()), textify_date());"><span>&#x25C0;</span></a>
+          <a style="display:inline;" href="javascript:;" onclick="next_date(); get_events_and_update_ui(textify_filters(get_filters()), textify_date());"><span>&#x25B6;</span></a>
+        </li>
         {% if view == "grid" %}
         <li class="selected-tab" style="margin:30px 0 30px 0;"><a href="/"><img src="{% static "images/grid-view-tab.png" %}" /><br />GRID</a></li>
         <li class="not-selected-tab"><a href="/map/"><img src="{% static "images/map-view-tab.png" %}" /><br />MAP</a></li>
