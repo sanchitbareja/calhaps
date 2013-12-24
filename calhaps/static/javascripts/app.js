@@ -267,21 +267,27 @@ function add_favorite_event(event_object){
 }
 
 function attach_events_to_markers(marker, newli, event_object){
-	var contentInfo = 	'<div id="markerContentInfo"><div id="tipBox"></div>'+
+
+	var contentInfo = 	'<div id="markerContentInfo">'+
+							'<div id="tipBox"></div>'+
 							'<div id="markerContentHeader">'+
 								'<div id="markerContentHeaderText">'+event_object['title'].substr(0,20)+
 									', '+event_object['club']['name']+''+
 								'</div>'+
+								'<div id="markerContentHeaderImage">'+
+									'<img id="markerContentImage" src="'+event_object['imageUrl']+'" />'+
+								'</div>'+
+								'<div id="markerContentWhereWhenDiv">'+
+									'<p class="success label" id="markerContentWhereWhenText">@ '+event_object['location']['name'].substr(0,12)+', '+formatAMPM(new Date(event_object['startTime']))+'</p>'+
+								'</div>'+
 							'</div>'+
 							'<div id="markerContentMainText">'+
-								'<img id="markerContentImage" src="'+event_object['imageUrl']+'" />'+
-								'<p>'+event_object['description'].substr(0,150)+'...'+
-								'<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')"> More</a>'+
-							'</div>'+
-							'<div id="markerContentWhereWhenDiv">'+
-								'<p class="success label" id="markerContentWhereWhenText">@ '+event_object['location']['name'].substr(0,12)+', '+formatAMPM(new Date(event_object['startTime']))+'</p>'+
+								'<p>'+event_object['description'].substr(0,80)+'...</p>'+
+								'<a href="#" data-reveal-id="eventInfoModal" id="markerContentEventInfoMore" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')"> More Info...</a>'+
 							'</div>'+
 						'</div>';
+
+	console.log(contentInfo);
 
 	//handling what happens when marker is clicked
 	function toggleClick() {
