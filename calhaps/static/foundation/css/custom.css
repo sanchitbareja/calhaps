@@ -768,12 +768,12 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 ----------------------------------------- */
 
 .favorite_button {
-	height: 1.5em;
+	height: 1em;
 	background: url("/site_media/static/images/unfavorited-event.png") no-repeat;
-	background-size: 1.5em;
+	background-size: 1em;
 	border: 0px;
 	display: inline;
-	width: 1.5em;
+	width: 1em;
 	margin: 0 0.5em 0 0;
 	padding: 0;
 	opacity: 0.5;
@@ -781,38 +781,38 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 }
 
 .favorite_button:hover {
-	height: 1.5em;
+	height: 1em;
 	background: url("/site_media/static/images/unfavorited-event.png") no-repeat;
-	background-size: 1.5em;
+	background-size: 1em;
 	border: 0px;
 	display: inline;
-	width: 1.5em;
+	width: 1em;
 	margin: 0 0.5em 0 0;
 	padding: 0;
 	opacity: 1;
 	vertical-align: middle;
 }
 
-button[disabled].favorited_button.favorited {
-	height: 1.5em;
+button.favorite_button.favorited {
+	height: 1em;
 	background: url("/site_media/static/images/favorited-event.png") no-repeat;
-	background-size: 1.5em;
+	background-size: 1em;
 	border: 0px;
 	display: inline;
-	width: 1.5em;
+	width: 1em;
 	margin: 0 0.5em 0 0;
 	padding: 0;
 	opacity: 1;
 	vertical-align: middle;
 }
 
-button[disabled].favorited_button:hover.favorited{
-	height: 1.5em;
+button.favorite_button:hover.favorited{
+	height: 1em;
 	background: url("/site_media/static/images/favorited-event.png") no-repeat;
-	background-size: 1.5em;
+	background-size: 1em;
 	border: 0px;
 	display: inline;
-	width: 1.5em;
+	width: 1em;
 	margin: 0 0.5em 0 0;
 	padding: 0;
 	opacity: 1;

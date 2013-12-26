@@ -103,13 +103,37 @@ function post_favorite_and_update_ui(event_id){
       contentType: 'application/json',
       statusCode : {
         201: function(data, textStatus, jsXHR){
-          console.log("Successfully favorited company!");
+          console.log("Successfully favorited event!");
           //update UI for that particular event_id here.
           console.log(data);
           add_favorite_event(data);
         }
       }
     });
+}
+
+function delete_favorite_and_update_ui(event_id){
+	user_id = $("#user_id").val();
+	$.ajax({
+		url:'/api/v1/favorites/',
+		type:'POST',
+		dataType: 'json',
+		data: JSON.stringify({
+			'event': event_id,
+			'user': user_id,
+			'delete': true
+		}),
+		contentType: 'application/json',
+		statusCode: {
+			201: function(data, textStatus, jsXHR){
+				console.log("Successfully unfavorited event!");
+				// update UI for the particular event_id here
+				console.log(data);
+				event_filters = get_filters();
+				get_events_and_update_ui(textify_filters(event_filters), textify_date());
+			}
+		}
+	});
 }
 
 function update_event_modal(title, description, image_url, location_name, start_time, club_name, club_description, club_image_url){
@@ -334,19 +358,32 @@ function attach_events_to_markers(marker, newli, event_object){
 	google.maps.event.addDomListener(newli,'mouseout', toggleBounce);
 }
 
-function disable_button(element){
+function delete_fav_button(element, event_id){
 	$(element).addClass("favorited");
-	$(element).attr("disabled","true");
 	$(element).css("background","url('/site_media/static/images/favorited-event.png') no-repeat");
-	$(element).css("background-size","1.5em");
+	$(element).css("background-size","1em");
 	$(element).css("opacity","1");
+	$(element).click(function(){
+		delete_favorite_and_update_ui(event_id);
+	});
+}
+
+function add_fav_button(element, event_id){
+	console.log("deleted"+String(event_id));
+	$(element).removeClass("favorited");
+	$(element).css("background","url('/site_media/static/images/favorited-event.png') no-repeat");
+	$(element).css("background-size","1em");
+	$(element).css("opacity","1");
+	$(element).click(function(){
+		post_favorite_and_update_ui(event_id);
+	});
 }
 
 function create_list_element(event_object) {
 	user_id = parseInt($("#user_id").val());
-	var list_item = $.parseHTML('<li><button class="favorite_button" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" ></button><a href="javascript:;">'+event_object['title'].substr(0,15)+'</a></li>');
+	var list_item = $.parseHTML('<li><button class="favorite_button" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); delete_fav_button(this, \''+event_object['id']+'\');" ></button><a href="javascript:;">'+event_object['title'].substr(0,15)+'</a></li>');
 	if(event_object["favorites"].indexOf(user_id) > -1){
-		list_item = $.parseHTML('<li><button class="favorited_button favorited" disabled="disabled"></button><a href="javascript:;">'+event_object['title'].substr(0,15)+'</a></li>');
+		list_item = $.parseHTML('<li><button class="favorite_button favorited" onclick="delete_favorite_and_update_ui(\''+event_object['id']+'\'); add_fav_button(this, \''+event_object['id']+'\');"></button><a href="javascript:;">'+event_object['title'].substr(0,15)+'</a></li>');
 	}	
 	$(list_id).append(list_item);
 	return list_item[0];
@@ -354,9 +391,9 @@ function create_list_element(event_object) {
 
 function create_grid_element(event_object) {
 	user_id = parseInt($("#user_id").val());
-	var favorite_item = '<button class="favorite_button pin-button" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); disable_button(this);" ></button>';
+	var favorite_item = '<button class="favorite_button pin-button" onclick="post_favorite_and_update_ui(\''+event_object['id']+'\'); delete_fav_button(this, \''+event_object['id']+'\');" ></button>';
 	if(event_object["favorites"].indexOf(user_id) > -1){
-		favorite_item = '<button class="favorited_button favorited pin-button" disabled="disabled"></button>';
+		favorite_item = '<button class="favorite_button favorited pin-button" onclick="delete_favorite_and_update_ui(\''+event_object['id']+'\'); add_fav_button(this, \''+event_object['id']+'\');"></button>';
 	}
 	var grid_item = $.parseHTML('<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')">'+
 		'<div class="pin">'+

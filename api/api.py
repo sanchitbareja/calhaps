@@ -7,13 +7,13 @@ from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource
 from tastypie import fields
 from tastypie.exceptions import ImmediateHttpResponse
-from tastypie.http import HttpForbidden
+from tastypie.http import HttpForbidden, HttpCreated
 
 # imports for haystack
 from django.conf.urls.defaults import *
 from django.core.paginator import Paginator, InvalidPage
 from tastypie.utils import trailing_slash
-from django.http import Http404
+from django.http import Http404, HttpResponse
 
 # misc
 from django.db.models import Q
@@ -262,19 +262,44 @@ class FavoriteResource(ModelResource):
     def obj_create(self, bundle, **kwargs):
         """
         Post favorites an event for the user
+        if 'delete' is in param, then we delete that post instead
         """
-        try:
-            event_id = bundle.data['event']
-            user_id = bundle.data['user']
-            event = Event.objects.get(id=event_id)
-            user = User.objects.get(id=user_id)
-            new_favorite = Favorite(event=event, user=user)
-            new_favorite.save()
-            bundle.obj = new_favorite
+        try: 
+            if bundle.data.get('delete',False):
+                try:
+                    print bundle.data
+                    event_id = bundle.data['event']
+                    user_id = bundle.data['user']
+                    event = Event.objects.get(id=event_id)
+                    user = User.objects.get(id=user_id)
+                    old_favorite = Favorite.objects.get(event=event, user=user)
+                    old_favorite.delete()
+                    # return some random Favorite object
+                    bundle.obj = Favorite.objects.all()[0]
+                except Exception as e:
+                    print e
+                    raise ImmediateHttpResponse(HttpForbidden("Unable to unfavorite event. Please try again."))
+                return bundle
+            else:
+                try:
+                    print bundle.data
+                    event_id = bundle.data['event']
+                    user_id = bundle.data['user']
+                    event = Event.objects.get(id=event_id)
+                    user = User.objects.get(id=user_id)
+                    if len(Favorite.objects.filter(event=event, user=user)) == 0:
+                        new_favorite = Favorite(event=event, user=user)
+                        new_favorite.save()
+                    else:
+                        new_favorite = Favorite.objects.filter(event=event, user=user)[0]
+                    bundle.obj = new_favorite
+                except Exception as e:
+                    print e
+                    raise ImmediateHttpResponse(HttpForbidden("Invalid POST bundle."))
+                return bundle
         except Exception as e:
             print e
-            raise ImmediateHttpResponse(HttpForbidden("Invalid POST bundle."))
-        return bundle
+            raise ImmediateHttpResponse(HttpForbidden("Unable to perform request. Please try again."))
 
     def determine_format(self, request):
         return 'application/json'
