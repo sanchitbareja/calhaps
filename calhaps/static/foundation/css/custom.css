@@ -793,7 +793,7 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 	vertical-align: middle;
 }
 
-button.favorite_button.favorited {
+.favorite_button.favorited {
 	height: 1em;
 	background: url("/site_media/static/images/favorited-event.png") no-repeat;
 	background-size: 1em;
@@ -806,7 +806,7 @@ button.favorite_button.favorited {
 	vertical-align: middle;
 }
 
-button.favorite_button:hover.favorited{
+.favorite_button:hover.favorited{
 	height: 1em;
 	background: url("/site_media/static/images/favorited-event.png") no-repeat;
 	background-size: 1em;
@@ -820,7 +820,8 @@ button.favorite_button:hover.favorited{
 }
 
 .pin-button{
-	float: left;
+	float: right;
+	top: 1.5em;
 }
 
 /*

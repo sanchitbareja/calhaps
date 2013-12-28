@@ -397,12 +397,12 @@ function create_grid_element(event_object) {
 	}
 	var grid_item = $.parseHTML('<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+event_object['description']+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+event_object['club']['description']+'\',\''+event_object['club']['imageUrl']+'\')">'+
 		'<div class="pin">'+
-          '<img style="min-height:8em;width:inherit;" src="'+event_object['imageUrl']+'" />'+
-          '<div class="pin-text">'+
-          	favorite_item+
-            '<h5 class="grid_title">'+event_object['title'].substr(0,20)+'</h5>'+
-            '<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+'</p>'+
-          '</div>'+
+			favorite_item+
+          	'<img style="min-height:8em;width:inherit;" src="'+event_object['imageUrl']+'" />'+
+          	'<div class="pin-text">'+
+            	'<h5 class="grid_title">'+event_object['title'].substr(0,20)+'</h5>'+
+            	'<p class="grid_text">@'+event_object['location']['name'].substr(0,12)+'</p>'+
+          	'</div>'+
         '</div></a>');
 	$(pins_id).append(grid_item);
 	return grid_item[0];
