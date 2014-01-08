@@ -87,6 +87,9 @@ class EventResource(ModelResource):
         limit = 0
         excludes = ['readyForDisplay']
 
+
+    #FOR SANCHIT -- why do you have three "if" statements, isn't the first two unnessecary if the last one is true, thereby increaing the time cost? 
+    #i didn't change it because I wasn't 100% sure I was going to break something lol. -Abhi
     def build_filters(self, filters=None):
         if filters is None:
             filters = {}
@@ -101,7 +104,7 @@ class EventResource(ModelResource):
                 filter_end_date = filter_start_date + datetime.timedelta(days=1)
 
                 # make sure the date is correct
-                sqs = Event.objects.filter(startTime__gte=filter_start_date).filter(startTime__lte=filter_start_date+datetime.timedelta(days=1))
+                sqs = Event.objects.filter(startTime__gte=filter_start_date).filter(startTime__lte=filter_start_date+datetime.timedelta(days=1)).order_by('startTime')
             except:
                 sqs = []
             if "pk__in" not in orm_filters.keys():
@@ -114,7 +117,7 @@ class EventResource(ModelResource):
                 # remove white spaces and capitalize first letter
                 event_filters_array = [event_filter.strip().title() for event_filter in event_filters.split(',')]
 
-                sqs = Event.objects.filter(typeOfEvent__type__in=event_filters_array)
+                sqs = Event.objects.filter(typeOfEvent__type__in=event_filters_array).order_by('startTime')
             except:
                 sqs = []
             if "pk__in" not in orm_filters.keys():
@@ -132,12 +135,16 @@ class EventResource(ModelResource):
                 # remove white spaces and capitalize first letter
                 event_filters_array = [event_filter.strip().title() for event_filter in event_filters.split(',')]
 
-                sqs = Event.objects.filter(startTime__gte=filter_start_date).filter(startTime__lte=filter_start_date+datetime.timedelta(days=1)).filter(typeOfEvent__type__in=event_filters_array)
+                sqs = Event.objects.filter(startTime__gte=filter_start_date).filter(startTime__lte=filter_start_date+datetime.timedelta(days=1)).filter(typeOfEvent__type__in=event_filters_array).order_by('startTime')
             except:
                 sqs = []
             if "pk__in" not in orm_filters.keys():
                 orm_filters["pk__in"] = []
             orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        #order events by time
+        for event in orm_filters["pk__in"]:
+
 
         return orm_filters
 
