@@ -142,9 +142,6 @@ class EventResource(ModelResource):
                 orm_filters["pk__in"] = []
             orm_filters["pk__in"] = [i.pk for i in sqs]
 
-        #order events by time
-        for event in orm_filters["pk__in"]:
-
 
         return orm_filters
 
