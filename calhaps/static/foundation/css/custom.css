@@ -623,7 +623,7 @@ background-color: #6600CC;
 	background: #FEFEFE;
 	border: 0px solid black;
 	box-shadow: 0px 0px 0px white;
-	margin: 0px;
+	margin: 0;
 	-webkit-column-break-inside: avoid;
 	-moz-column-break-inside: avoid;
 	column-break-inside: avoid;
@@ -634,12 +634,13 @@ background-color: #6600CC;
 }
 
 .pin img {
-	display: block;
+	display: inline-block;
 	width: 100%;
 	/*border-bottom: 1px solid #ccc;*/
 	padding-bottom: 0em;
 	margin-bottom: 0em;
 	min-height: 5em;
+	margin-top: -1.4em;
 }
 
 .pin-text {
@@ -776,7 +777,7 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 	width: 1em;
 	margin: 0 0.5em 0 0;
 	padding: 0;
-	opacity: 0.5;
+	opacity: 0.8;
 	vertical-align: middle;
 }
 
@@ -806,7 +807,7 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 	vertical-align: middle;
 }
 
-.favorite_button:hover.favorited{
+.favorite_button:hover.favorited {
 	height: 1em;
 	background: url("/site_media/static/images/favorited-event.png") no-repeat;
 	background-size: 1em;
@@ -819,9 +820,12 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 	vertical-align: middle;
 }
 
-.pin-button{
+.pin-button {
 	float: right;
-	top: 1.5em;
+	top: 1em;
+	height: 1.5em !important;
+	width: 1.5em !important;
+	background-size: 1.5em !important;
 }
 
 /*
