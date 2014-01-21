@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from events.views import home_grid, home_map, feedback_form, add_event, event_info
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -28,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^feedback/$',feedback_form),
     url(r'^add/event/$',add_event),
     url(r'^event/(.+)/$',event_info),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
