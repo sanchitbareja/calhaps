@@ -14,7 +14,7 @@
       </ul>
       <!-- Right Nav Section -->
       <ul class="right" style="padding-right:8.4%">
-        <li><a href="#" data-reveal-id="addEventModal" id="addEventButton"><p>+</p>&nbsp;&nbsp;Add Event</a></li>
+        <li><a href="#" onclick="mixpanel.track('add-event-modal');" data-reveal-id="addEventModal" id="addEventButton"><p>+</p>&nbsp;&nbsp;Add Event</a></li>
         {% if user.is_authenticated %}
         <li><a href="#" id="loggedInButton" data-dropdown="dropLinks" data-options="is_hover:true"><img src="{{ user.thumbnail_profile_pic }}">&nbsp;&nbsp;{{ user.first_name }}</a></li>
           <div id="dropLinks" data-dropdown-content class="f-dropdown content">
@@ -26,16 +26,16 @@
             </div>
             <div class="row" id="profile_settings">
               <div style="text-align:left; display:inline-block; float:left;">
-                <a href="#">Promote your event</a>
+                <a href="#" onclick="mixpanel.track('promote-event-link');">Promote your event</a>
               </div>
               <div style="text-align:right; display:inline-block; float:right;">
-                <a href="/logout/">Logout</a>
+                <a href="/logout/" onclick="mixpanel.track('logout');">Logout</a>
               </div>
             </div>
             <input type="hidden" name="user_id" value="{{user.id}}" id="user_id">
           </div>
         {% else %}
-        <li><a href="/login/facebook/" id="loggedOutButton"><img src="{% static "images/login-tab.png" %}">Login</a></li>
+        <li><a href="/login/facebook/" onclick="mixpanel.track('login');" id="loggedOutButton"><img src="{% static "images/login-tab.png" %}">Login</a></li>
         {% endif %}
        </ul>
     </section>
