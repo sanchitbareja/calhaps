@@ -136,31 +136,6 @@ function delete_favorite_and_update_ui(event_id){
 	});
 }
 
-// function update_event_modal(title, description, image_url, location_name, start_time, club_name, club_description, club_image_url){
-// 	console.log(title);
-// 	console.log(description);
-// 	console.log(image_url)
-// 	console.log(location_name);
-// 	console.log(start_time);
-// 	console.log(club_name);
-// 	console.log(club_description);
-// 	console.log(club_image_url);
-// 	$("#eventModalTitle").text(title);
-// 	$("#eventModalDescription").text(description);
-// 	if(image_url){
-// 		$("#eventInfoModal").css("background","url(\'"+image_url+"\')");
-// 	}
-// 	$("#eventModalLocationName").text(location_name);
-// 	$("#eventModalStartTime").text(formatAMPM(new Date(start_time)));
-// 	$("#eventModalClubName").text(club_name);
-// 	$("#eventModalClubDescription").text(club_description);
-// 	if(club_image_url){
-// 		$("#eventModalClubImage").attr("src",club_image_url);
-// 	}
-// 	$("#eventInfoModal").foundation("reveal",'open');
-// 	console.log("open info modal");
-// }
-
 function update_event_modal(event_id){
 	console.log("update event modal");
 	console.log(event_id);
@@ -170,15 +145,7 @@ function update_event_modal(event_id){
 		success: function(data, status, xhr) {
 			console.log(data);
 			console.log(status);
-			//title
-			//description
-			//image_url
-			//location_name
-			//date
-			//club_name
-			//club_description
-			//club_image_url
-			// 	$("#eventModalTitle").text(title);
+			$("#eventModalTitle").text(data['title']);
 			$("#eventModalDescription").html(data['description']);
 			if(data['imageUrl']){
 				$("#eventInfoModal").css("background","url(\'"+data['imageUrl']+"\')");
@@ -322,7 +289,9 @@ function update_favorite_events(events){
 }
 
 function add_favorite_event(event_object){
-	$(favorite_list_id).append($.parseHTML('<li><a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal('+event_object['id']+')'));
+	console.log("adding favorite event");
+	console.log(event_object);
+	$(favorite_list_id).append($.parseHTML('<li><a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal('+event_object['id']+')">'+event_object['title'].substr(0,30)+'</a></li>'));
 }
 
 function attach_events_to_markers(marker, newli, event_object){
