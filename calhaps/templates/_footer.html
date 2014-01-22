@@ -1,25 +1,22 @@
 {% load static from staticfiles %}
 {% load i18n %}
 <div class="row collapse hide-for-small">
-	<div class="large-3 columns hide-for-small center-text capitalize-text divider-after" id="footer-font">
-		Powered by <img src="{% static "images/calhaps_logo.png" %}" style="height:2em;"/>
+	<div class="large-2 columns hide-for-small center-text capitalize-text" id="footer-font">
+		<a href="#" onclick="mixpanel.track('calhaps-modal');" data-reveal-id="contactUsModal">Powered by <img src="{% static "images/calhaps_logo.png" %}" style="height:2em;"/></a>
 	</div>
-	<div class="large-1 columns center-text capitalize-text" id="footer-font">
-		<a href="#" onclick="mixpanel.track('contact-us-modal');" data-reveal-id="contactUsModal">Contact</a>
-	</div>
-	<div class="large-1 columns center-text capitalize-text" id="footer-font">
-		<a href="#" onclick="mixpanel.track('advertise-modal');">Advertise</a>
+	<div class="large-2 columns center-text capitalize-text" id="footer-font">
+		<a href="http://advertise.dailycal.org/" onclick="mixpanel.track('advertise-modal');">Advertise</a>
 	</div>
 	<div class="large-1 columns center-text capitalize-text" id="footer-font">
 		<a href="#" onclick="mixpanel.track('faq-modal');">Faq</a>
 	</div>
-	<div class="large-1 columns center-text capitalize-text" id="footer-font">
+	<div class="large-2 columns center-text capitalize-text" id="footer-font">
 		<a href="http://www.dailycal.org/" onclick="mixpanel.track('redirect-to-dailycal');">Daily Cal</a>
 	</div>
 	<div class="large-1 columns center-text capitalize-text" id="footer-font">
 		<a href="#" onclick="mixpanel.track('feedback-modal');" data-reveal-id="feedbackModal">Feedback</a>
 	</div>
-	<div class="large-4 columns hide-for-small center-text" id="footer-font">
+	<div class="large-3 columns hide-for-small center-text" id="footer-font">
 		&copy; The Daily Californian 2013. All rights reserved.
 	</div>
 </div>
