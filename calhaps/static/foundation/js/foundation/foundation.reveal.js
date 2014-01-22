@@ -106,9 +106,9 @@
       $('body').on('keyup.fndtn.reveal', function ( event ) {
         var open_modal = $('[data-reveal].open'),
             settings = open_modal.data('reveal-init');
-        if ( event.which === 27  && settings.close_on_esc) { // 27 is the keycode for the Escape key
-          open_modal.foundation('reveal', 'close');
-        }
+        // if ( event.which === 27  && settings.close_on_esc) { // 27 is the keycode for the Escape key
+        //   open_modal.foundation('reveal', 'close');
+        // }
       });
 
       return true;

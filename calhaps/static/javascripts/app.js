@@ -136,29 +136,64 @@ function delete_favorite_and_update_ui(event_id){
 	});
 }
 
-function update_event_modal(title, description, image_url, location_name, start_time, club_name, club_description, club_image_url){
-	console.log(title);
-	console.log(description);
-	console.log(image_url)
-	console.log(location_name);
-	console.log(start_time);
-	console.log(club_name);
-	console.log(club_description);
-	console.log(club_image_url);
-	$("#eventModalTitle").text(title);
-	$("#eventModalDescription").text(description);
-	if(image_url){
-		$("#eventInfoModal").css("background","url(\'"+image_url+"\')");
-	}
-	$("#eventModalLocationName").text(location_name);
-	$("#eventModalStartTime").text(formatAMPM(new Date(start_time)));
-	$("#eventModalClubName").text(club_name);
-	$("#eventModalClubDescription").text(club_description);
-	if(club_image_url){
-		$("#eventModalClubImage").attr("src",club_image_url);
-	}
-	$("#eventInfoModal").foundation("reveal",'open');
-	console.log("open info modal");
+// function update_event_modal(title, description, image_url, location_name, start_time, club_name, club_description, club_image_url){
+// 	console.log(title);
+// 	console.log(description);
+// 	console.log(image_url)
+// 	console.log(location_name);
+// 	console.log(start_time);
+// 	console.log(club_name);
+// 	console.log(club_description);
+// 	console.log(club_image_url);
+// 	$("#eventModalTitle").text(title);
+// 	$("#eventModalDescription").text(description);
+// 	if(image_url){
+// 		$("#eventInfoModal").css("background","url(\'"+image_url+"\')");
+// 	}
+// 	$("#eventModalLocationName").text(location_name);
+// 	$("#eventModalStartTime").text(formatAMPM(new Date(start_time)));
+// 	$("#eventModalClubName").text(club_name);
+// 	$("#eventModalClubDescription").text(club_description);
+// 	if(club_image_url){
+// 		$("#eventModalClubImage").attr("src",club_image_url);
+// 	}
+// 	$("#eventInfoModal").foundation("reveal",'open');
+// 	console.log("open info modal");
+// }
+
+function update_event_modal(event_id){
+	console.log("update event modal");
+	console.log(event_id);
+	$.ajax({
+		type: "GET",
+		url: '/api/v1/events/'+String(event_id)+'/',
+		success: function(data, status, xhr) {
+			console.log(data);
+			console.log(status);
+			//title
+			//description
+			//image_url
+			//location_name
+			//date
+			//club_name
+			//club_description
+			//club_image_url
+			// 	$("#eventModalTitle").text(title);
+			$("#eventModalDescription").text(data['description']);
+			if(data['imageUrl']){
+				$("#eventInfoModal").css("background","url(\'"+data['imageUrl']+"\')");
+			}
+			$("#eventModalLocationName").text(data['location']['name']);
+			$("#eventModalStartTime").text(formatAMPM(new Date(data['startTime'])));
+			$("#eventModalClubName").text(data['club']['name']);
+			$("#eventModalClubDescription").text(data['club']['description']);
+			if(data['club']['imageUrl']){
+				$("#eventModalClubImage").attr("src",data['club']['imageUrl']);
+			}
+			$("#eventInfoModal").foundation("reveal",'open');
+			console.log("open info modal");
+		}
+	});
 }
 
 function update_date_display() {
@@ -287,7 +322,7 @@ function update_favorite_events(events){
 }
 
 function add_favorite_event(event_object){
-	$(favorite_list_id).append($.parseHTML('<li><a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+String(event_object['description'])+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+String(event_object['club']['description'])+'\',\''+event_object['club']['imageUrl']+'\')">'+event_object['title'].substr(0,30)+'</a></li>'));
+	$(favorite_list_id).append($.parseHTML('<li><a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal('+event_object['id']+')'));
 }
 
 function attach_events_to_markers(marker, newli, event_object){
@@ -307,7 +342,7 @@ function attach_events_to_markers(marker, newli, event_object){
 							'</div>'+
 							'<div id="markerContentMainText">'+
 								'<p>'+String(event_object['description']).substr(0,80)+'...</p>'+
-								'<a href="#" data-reveal-id="eventInfoModal" id="markerContentEventInfoMore" onclick="update_event_modal(\''+event_object['title']+'\',\''+String(event_object['description'])+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+String(event_object['club']['description'])+'\',\''+event_object['club']['imageUrl']+'\')"> More Info...</a>'+
+								'<a href="#" data-reveal-id="eventInfoModal" id="markerContentEventInfoMore" onclick="update_event_modal('+event_object['id']+')"> More Info...</a>'+
 							'</div>'+
 						'</div>';
 
@@ -395,7 +430,7 @@ function create_grid_element(event_object) {
 	if(event_object["favorites"].indexOf(user_id) > -1){
 		favorite_item = '<button class="favorite_button favorited pin-button" onclick="delete_favorite_and_update_ui(\''+event_object['id']+'\'); add_fav_button(this, \''+event_object['id']+'\');"></button>';
 	}
-	var grid_item = $.parseHTML('<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal(\''+event_object['title']+'\',\''+String(event_object['description'])+'\',\''+event_object['imageUrl']+'\',\''+event_object['location']['name']+'\',\''+event_object['startTime']+'\',\''+event_object['club']['name']+'\',\''+String(event_object['club']['description'])+'\',\''+event_object['club']['imageUrl']+'\')">'+
+	var grid_item = $.parseHTML('<a href="#" data-reveal-id="eventInfoModal" onclick="update_event_modal('+event_object['id']+')">'+
 		'<div class="pin">'+
 			favorite_item+
           	'<img style="min-height:8em;width:inherit;" src="'+event_object['imageUrl']+'" />'+
