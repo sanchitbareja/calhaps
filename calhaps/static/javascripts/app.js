@@ -179,14 +179,14 @@ function update_event_modal(event_id){
 			//club_description
 			//club_image_url
 			// 	$("#eventModalTitle").text(title);
-			$("#eventModalDescription").text(data['description']);
+			$("#eventModalDescription").html(data['description']);
 			if(data['imageUrl']){
 				$("#eventInfoModal").css("background","url(\'"+data['imageUrl']+"\')");
 			}
 			$("#eventModalLocationName").text(data['location']['name']);
 			$("#eventModalStartTime").text(formatAMPM(new Date(data['startTime'])));
 			$("#eventModalClubName").text(data['club']['name']);
-			$("#eventModalClubDescription").text(data['club']['description']);
+			$("#eventModalClubDescription").html(data['club']['description']);
 			if(data['club']['imageUrl']){
 				$("#eventModalClubImage").attr("src",data['club']['imageUrl']);
 			}
