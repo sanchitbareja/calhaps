@@ -3,7 +3,7 @@
 //////////////////////////////////////////
 
 var display_date = new Date(); // will need to increment/decrement dates depending on what they request. start with current_date
-var all_filters = ['Parties','Concerts','Greeklife','Sports','Philanthropy','Performances','Conferences','Movies','Food','Green','Celebrity','Exhibitions','Others']
+var all_filters = ['Parties','Greek','Sports','Philanthropy','Performances','Others','Religious','Campus','Coop','Deals','Free/Sale','18+','21+','Entertainment','Professional','Cultural']
 var list_id = '#filteredList';
 var favorite_list_id = '#favorited_events';
 var pins_id = '#pin-columns';
