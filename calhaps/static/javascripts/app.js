@@ -345,7 +345,7 @@ function attach_events_to_markers(marker, newli, event_object){
 		}
 		,disableAutoPan: false
 		,maxWidth: 300
-		,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+		,closeBoxURL: "/site_media/static/images/cross.png"
 		,infoBoxClearance: new google.maps.Size(100, 100)
 		,isHidden: false
 		,pane: "floatPane"
