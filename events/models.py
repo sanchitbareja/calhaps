@@ -30,6 +30,7 @@ TYPE_OF_EVENT_CHOICES = (
 	('Entertainment','Entertainment'),
 	('Professional','Professional'),
 	('Cultural','Cultural'),
+	('Food','Food'),
 	)
 
 class EventType(models.Model):

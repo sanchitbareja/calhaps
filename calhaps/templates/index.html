@@ -73,7 +73,7 @@
     {% endif %}
   </div>
   <div class="large-1 columns hide-for-small">
-    <div id="sideFilters">
+    <div id="sideFilters" style="position:fixed;">
       <table id="filterDropdownTable">
         <tr>
           <td id="filterCell"><label for="toggle-all">All</label><input type="checkbox" value="all" id="toggle-all" onclick="toggle_switch('toggle-all',this)"></td>
@@ -87,6 +87,8 @@
           <td id="filterCell"><label for="toggle-deals">Deals</label><input type="checkbox" value="deals" id="toggle-deals" onclick="toggle_switch('toggle-deals',this)"></td>
         </tr><tr>
           <td id="filterCell"><label for="toggle-entertainment">Entertainment</label><input type="checkbox" value="entertainment" id="toggle-entertainment" onclick="toggle_switch('toggle-entertainment',this)"></td>
+        </tr><tr>
+          <td id="filterCell"><label for="toggle-food">Food</label><input type="checkbox" value="food" id="toggle-food" onclick="toggle_switch('toggle-food',this)"></td>
         </tr><tr>
           <td id="filterCell"><label for="toggle-freesale">Free/Sale</label><input type="checkbox" value="free/sale" id="toggle-freesale" onclick="toggle_switch('toggle-freesale',this)"></td>
         </tr><tr>
