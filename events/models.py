@@ -15,39 +15,25 @@ from django.core import urlresolvers
 
 TYPE_OF_EVENT_CHOICES = (
 	('Parties', 'Parties'),
-	('Concerts', 'Concerts'),
-	('Greeklife', 'Greeklife'),
+	('Greek', 'Greek'),
 	('Sports', 'Sports'),
 	('Philanthropy', 'Philanthropy'),
 	('Performances', 'Performances'),
-	('Conferences', 'Conferences'),
-	('Movies', 'Movies'),
-	('Food', 'Food'),
-	('Green','Green'),
-	('Celebrity','Celebrity'),
-	('Exhibitions','Exhibitions'),
-	('Others','Others')
-	)
-
-TYPE_OF_EVENT_CHOICES_HIDDEN = (
-	('Parties', 'Parties'),
-	('Concerts', 'Concerts'),
-	('Greeklife', 'Greeklife'),
-	('Sports', 'Sports'),
-	('Philanthropy', 'Philanthropy'),
-	('Performances', 'Performances'),
-	('Conferences', 'Conferences'),
-	('Movies', 'Movies'),
-	('Food', 'Food'),
-	('Green','Green'),
-	('Celebrity','Celebrity'),
-	('Exhibitions','Exhibitions'),
 	('Others','Others'),
-	('halloween','halloween'),
+	('Religious', 'Religious'),
+	('Campus','Campus'),
+	('Coop','Coop'),
+	('Deals', 'Deals'),
+	('Free/Sale','Free/Sale'),
+	('18+','18+'),
+	('21+','21+'),
+	('Entertainment','Entertainment'),
+	('Professional','Professional'),
+	('Cultural','Cultural'),
 	)
 
 class EventType(models.Model):
-	type = models.CharField(max_length = 256, choices = TYPE_OF_EVENT_CHOICES_HIDDEN)
+	type = models.CharField(max_length = 256, choices = TYPE_OF_EVENT_CHOICES)
 
 	def __unicode__(self):
 		return self.type
