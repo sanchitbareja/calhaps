@@ -84,11 +84,11 @@
         </tr><tr>
           <td id="filterCell"><label for="toggle-cultural">Cultural</label><input type="checkbox" value="cultural" id="toggle-cultural" onclick="toggle_switch('toggle-cultural',this)"></td>
         </tr><tr>
-          <td id="filterCell"><label for="toggle-deals">Deals</label><input type="checkbox" value="deals" id="toggle-deals" onclick="toggle_switch('toggle-deal',this)"></td>
+          <td id="filterCell"><label for="toggle-deals">Deals</label><input type="checkbox" value="deals" id="toggle-deals" onclick="toggle_switch('toggle-deals',this)"></td>
         </tr><tr>
           <td id="filterCell"><label for="toggle-entertainment">Entertainment</label><input type="checkbox" value="entertainment" id="toggle-entertainment" onclick="toggle_switch('toggle-entertainment',this)"></td>
         </tr><tr>
-          <td id="filterCell"><label for="toggle-free/sale">Free/Sale</label><input type="checkbox" value="free/sale" id="toggle-free/sale" onclick="toggle_switch('toggle-free/sale',this)"></td>
+          <td id="filterCell"><label for="toggle-freesale">Free/Sale</label><input type="checkbox" value="free/sale" id="toggle-freesale" onclick="toggle_switch('toggle-freesale',this)"></td>
         </tr><tr>
           <td id="filterCell"><label for="toggle-greek">Greek</label><input type="checkbox" value="greek" id="toggle-greek" onclick="toggle_switch('toggle-greek',this)"></td>
         </tr><tr>
@@ -102,13 +102,13 @@
         </tr><tr>
           <td id="filterCell"><label for="toggle-professional">Professional</label><input type="checkbox" value="professional" id="toggle-professional" onclick="toggle_switch('toggle-professional',this)"></td>
         </tr><tr>
-          <td id="filterCell"><label for="toggle-religious">Religious</label><input type="checkbox" value="religious" id="toggle-religious" onclick="toggle_switch('toggle-regligious',this)"></td>
+          <td id="filterCell"><label for="toggle-religious">Religious</label><input type="checkbox" value="religious" id="toggle-religious" onclick="toggle_switch('toggle-religious',this)"></td>
         </tr><tr>
           <td id="filterCell"><label for="toggle-sports">Sports</label><input type="checkbox" value="sports" id="toggle-sports" onclick="toggle_switch('toggle-sports',this)"></td>
         </tr><tr>
-          <td id="filterCell"><label for="toggle-18+">18+</label><input type="checkbox" value="18+" id="toggle-18+" onclick="toggle_switch('toggle-18+',this)"></td>
+          <td id="filterCell"><label for="toggle-18">18+</label><input type="checkbox" value="18+" id="toggle-18" onclick="toggle_switch('toggle-18',this)"></td>
         </tr><tr>
-          <td id="filterCell"><label for="toggle-21+">21+</label><input type="checkbox" value="21+" id="toggle-21+" onclick="toggle_switch('toggle-21+',this)"></td>
+          <td id="filterCell"><label for="toggle-21">21+</label><input type="checkbox" value="21+" id="toggle-21" onclick="toggle_switch('toggle-21',this)"></td>
         </tr>        
       </table>
     </div>
@@ -117,5 +117,16 @@
 
 <!-- Event Information Modal -->
 {% include "eventInfoModal.html" %}
+
+<script type="text/javascript">
+ 
+$("label[for=toggle-campus]").click();
+$("label[for=toggle-deals]").click();
+$("label[for=toggle-party]").click();
+$("label[for=toggle-sports]").click();
+$("label[for=toggle-entertainment]").click();
+$("label[for=toggle-professional]").click();
+
+</script>
 
 {% endblock %}
