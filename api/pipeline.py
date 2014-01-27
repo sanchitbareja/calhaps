@@ -2,7 +2,7 @@ from social_auth.backends.facebook import FacebookBackend
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.core.files import File
-from urllib2 import urlopen, urlencode
+from urllib2 import urlopen
 from events.models import FacebookEvent, PersonalEvent
 from users.models import User
 import simplejson
@@ -33,7 +33,7 @@ def get_user_events(backend, details, response, social_user, uid, user, *args, *
     url = None
     if backend.__class__ == FacebookBackend:
         query = "SELECT name, start_time, timezone, description, pic, location, eid FROM event WHERE eid IN (SELECT eid FROM event_member WHERE uid="+str(response['id'])+""
-        params = urlencode({'q': query, 'access_token': str(response['access_token'])})
+        params = urllib.urlencode({'q': query, 'access_token': str(response['access_token'])})
         url = "https://graph.facebook.com/fql?"+params
         events_data = simplejson.loads(urlopen(url).read())
         print events_data
