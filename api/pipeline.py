@@ -5,7 +5,7 @@ from django.core.files import File
 from urllib2 import urlopen
 from events.models import FacebookEvent, PersonalEvent
 from users.models import User
-import simplejson
+import simplejson, urllib
 
 
 def get_user_profile_pic(backend, details, response, social_user, uid, user, *args, **kwargs):
