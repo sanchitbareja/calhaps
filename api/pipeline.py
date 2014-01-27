@@ -35,6 +35,7 @@ def get_user_events(backend, details, response, social_user, uid, user, *args, *
         query = "SELECT name, start_time, timezone, description, pic, location, eid FROM event WHERE eid IN (SELECT eid FROM event_member WHERE uid="+str(response['id'])+""
         params = urllib.urlencode({'q': query, 'access_token': str(response['access_token'])})
         url = "https://graph.facebook.com/fql?"+params
+        print url
         events_data = simplejson.loads(urlopen(url).read())
         print events_data
         for event in events_data['data']:
