@@ -223,6 +223,26 @@ function get_filters() {
 }
 
 function toggle_switch(label_for, element) {
+	if(label_for == 'toggle-all'){
+		if($(element).is(":checked")){
+			$("input[id^=toggle]").each(function(index,element) {
+				if($(element).is(":checked")) {
+					// don't do anything
+				} else {
+					$(element).click();
+				}
+			});
+		} else {
+			$("input[id^=toggle]").each(function(index,element) {
+				if($(element).is(":checked")) {
+					$(element).click();
+				} else {
+					// don't do anything
+				}
+			});
+		}
+	}
+
 	if($(element).is(":checked")){
 		$("label[for="+label_for+"]").parent().css('background','rgba(40,40,40,0.8)');
 		$("label[for="+label_for+"]").css('color','white');
